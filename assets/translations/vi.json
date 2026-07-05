@@ -1,0 +1,99 @@
+{
+  "appName": "Stock App",
+  "login": {
+    "slogan": "Đầu tư chứng khoán thông minh",
+    "account": "Tài khoản",
+    "password": "Mật khẩu",
+    "forgotPassword": "Quên mật khẩu?",
+    "signIn": "Đăng nhập",
+    "noAccount": "Chưa có tài khoản? ",
+    "openAccount": "Mở tài khoản",
+    "validateEmpty": "Vui lòng nhập tài khoản và mật khẩu"
+  },
+  "nav": {
+    "market": "Thị Trường",
+    "prices": "Bảng Giá",
+    "trading": "Giao Dịch",
+    "search": "Tìm Kiếm",
+    "notifications": "Thông Báo"
+  },
+  "common": {
+    "all": "Tất cả",
+    "stock": "Cổ phiếu",
+    "derivatives": "Phái sinh",
+    "coveredWarrant": "Chứng quyền",
+    "news": "Tin tức",
+    "system": "Hệ thống",
+    "transaction": "Giao dịch",
+    "priceAlert": "Cảnh báo giá",
+    "buy": "MUA",
+    "sell": "BÁN",
+    "symbol": "Mã CK",
+    "price": "Giá",
+    "change": "+/-",
+    "percent": "%",
+    "volume": "KL",
+    "noResult": "Không tìm thấy kết quả"
+  },
+  "market": {
+    "overview": "Tổng quan",
+    "sector": "Ngành",
+    "marketIndices": "Chỉ số thị trường",
+    "topGainers": "Top tăng giá",
+    "topLosers": "Top giảm giá",
+    "sectorGroup": "Nhóm ngành"
+  },
+  "prices": {
+    "favorite": "Yêu thích",
+    "noSymbol": "Chưa có mã nào"
+  },
+  "trading": {
+    "placeOrder": "Đặt lệnh",
+    "todayOrders": "Lệnh trong ngày",
+    "orderBook": "Sổ lệnh",
+    "portfolio": "Danh mục",
+    "history": "Lịch sử",
+    "symbolHint": "VD: VNM",
+    "symbolLabel": "Mã cổ phiếu",
+    "quantity": "Khối lượng",
+    "orderPrice": "Giá đặt",
+    "orderSuccess": "Đặt lệnh (demo) thành công!",
+    "statusMatched": "Đã khớp",
+    "statusPending": "Chờ khớp",
+    "statusCanceled": "Đã hủy",
+    "filled": "Khớp",
+    "time": "Giờ",
+    "totalValue": "Tổng giá trị (triệu đồng)",
+    "profitLoss": "Lãi/lỗ",
+    "avg": "TB",
+    "simulatedNote": "* Số liệu mô phỏng · màu theo lãi/lỗ",
+    "tradeHistory": "Lịch sử giao dịch"
+  },
+  "search": {
+    "hint": "Nhập mã CK hoặc tên công ty..."
+  },
+  "notifications": {
+    "empty": "Chưa có thông báo"
+  },
+  "menu": {
+    "title": "Menu",
+    "logout": "Đăng xuất",
+    "userCode": "Mã KH",
+    "cashTransaction": "Giao dịch Tiền",
+    "securitiesTransaction": "Giao dịch Chứng khoán",
+    "accountManagement": "Quản lý tài khoản",
+    "utilities": "Tiện ích",
+    "settings": "Cài đặt",
+    "security": "Bảo mật",
+    "support": "Hỗ trợ",
+    "logoutConfirmMessage": "Bạn có chắc chắn muốn đăng xuất?",
+    "cancel": "Hủy"
+  },
+  "language": {
+    "title": "Ngôn ngữ",
+    "vi": "Tiếng Việt",
+    "en": "English",
+    "zh": "中文",
+    "ja": "日本語"
+  }
+}

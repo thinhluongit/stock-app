@@ -1,0 +1,99 @@
+{
+  "appName": "Stock App",
+  "login": {
+    "slogan": "智能股票投资",
+    "account": "账号",
+    "password": "密码",
+    "forgotPassword": "忘记密码？",
+    "signIn": "登录",
+    "noAccount": "还没有账号？ ",
+    "openAccount": "开户",
+    "validateEmpty": "请输入账号和密码"
+  },
+  "nav": {
+    "market": "行情",
+    "prices": "报价",
+    "trading": "交易",
+    "search": "搜索",
+    "notifications": "通知"
+  },
+  "common": {
+    "all": "全部",
+    "stock": "股票",
+    "derivatives": "衍生品",
+    "coveredWarrant": "权证",
+    "news": "新闻",
+    "system": "系统",
+    "transaction": "交易",
+    "priceAlert": "价格提醒",
+    "buy": "买入",
+    "sell": "卖出",
+    "symbol": "代码",
+    "price": "价格",
+    "change": "+/-",
+    "percent": "%",
+    "volume": "量",
+    "noResult": "未找到结果"
+  },
+  "market": {
+    "overview": "概览",
+    "sector": "行业",
+    "marketIndices": "市场指数",
+    "topGainers": "涨幅榜",
+    "topLosers": "跌幅榜",
+    "sectorGroup": "行业板块"
+  },
+  "prices": {
+    "favorite": "自选",
+    "noSymbol": "暂无代码"
+  },
+  "trading": {
+    "placeOrder": "下单",
+    "todayOrders": "当日委托",
+    "orderBook": "委托单",
+    "portfolio": "持仓",
+    "history": "历史",
+    "symbolHint": "例如 VNM",
+    "symbolLabel": "股票代码",
+    "quantity": "数量",
+    "orderPrice": "委托价",
+    "orderSuccess": "下单成功（演示）！",
+    "statusMatched": "已成交",
+    "statusPending": "待成交",
+    "statusCanceled": "已撤销",
+    "filled": "成交",
+    "time": "时间",
+    "totalValue": "总市值（百万越南盾）",
+    "profitLoss": "盈亏",
+    "avg": "均价",
+    "simulatedNote": "* 模拟数据 · 颜色按盈亏",
+    "tradeHistory": "交易历史"
+  },
+  "search": {
+    "hint": "输入代码或公司名称..."
+  },
+  "notifications": {
+    "empty": "暂无通知"
+  },
+  "menu": {
+    "title": "菜单",
+    "logout": "退出登录",
+    "userCode": "客户号",
+    "cashTransaction": "资金交易",
+    "securitiesTransaction": "证券交易",
+    "accountManagement": "账户管理",
+    "utilities": "工具",
+    "settings": "设置",
+    "security": "安全",
+    "support": "支持",
+    "logoutConfirmMessage": "确定要退出登录吗？",
+    "cancel": "取消"
+  },
+  "language": {
+    "title": "语言",
+    "vi": "Tiếng Việt",
+    "en": "English",
+    "zh": "中文",
+    "ja": "日本語"
+  }
+}

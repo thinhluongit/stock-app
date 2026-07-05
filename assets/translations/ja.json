@@ -1,0 +1,99 @@
+{
+  "appName": "Stock App",
+  "login": {
+    "slogan": "スマートな株式投資",
+    "account": "アカウント",
+    "password": "パスワード",
+    "forgotPassword": "パスワードをお忘れですか？",
+    "signIn": "ログイン",
+    "noAccount": "アカウントをお持ちでないですか？ ",
+    "openAccount": "口座開設",
+    "validateEmpty": "アカウントとパスワードを入力してください"
+  },
+  "nav": {
+    "market": "マーケット",
+    "prices": "気配値",
+    "trading": "取引",
+    "search": "検索",
+    "notifications": "通知"
+  },
+  "common": {
+    "all": "すべて",
+    "stock": "株式",
+    "derivatives": "デリバティブ",
+    "coveredWarrant": "ワラント",
+    "news": "ニュース",
+    "system": "システム",
+    "transaction": "取引",
+    "priceAlert": "価格アラート",
+    "buy": "買い",
+    "sell": "売り",
+    "symbol": "銘柄",
+    "price": "価格",
+    "change": "+/-",
+    "percent": "%",
+    "volume": "出来高",
+    "noResult": "結果が見つかりません"
+  },
+  "market": {
+    "overview": "概要",
+    "sector": "セクター",
+    "marketIndices": "市場指数",
+    "topGainers": "値上がり率",
+    "topLosers": "値下がり率",
+    "sectorGroup": "業種グループ"
+  },
+  "prices": {
+    "favorite": "お気に入り",
+    "noSymbol": "銘柄がありません"
+  },
+  "trading": {
+    "placeOrder": "注文",
+    "todayOrders": "当日注文",
+    "orderBook": "注文一覧",
+    "portfolio": "ポートフォリオ",
+    "history": "履歴",
+    "symbolHint": "例: VNM",
+    "symbolLabel": "銘柄コード",
+    "quantity": "数量",
+    "orderPrice": "注文価格",
+    "orderSuccess": "注文しました（デモ）！",
+    "statusMatched": "約定済み",
+    "statusPending": "待機中",
+    "statusCanceled": "取消済み",
+    "filled": "約定",
+    "time": "時間",
+    "totalValue": "総額（百万VND）",
+    "profitLoss": "損益",
+    "avg": "平均",
+    "simulatedNote": "* シミュレーションデータ · 色は損益による",
+    "tradeHistory": "取引履歴"
+  },
+  "search": {
+    "hint": "銘柄または会社名を入力..."
+  },
+  "notifications": {
+    "empty": "通知はありません"
+  },
+  "menu": {
+    "title": "メニュー",
+    "logout": "ログアウト",
+    "userCode": "顧客番号",
+    "cashTransaction": "資金取引",
+    "securitiesTransaction": "証券取引",
+    "accountManagement": "口座管理",
+    "utilities": "ツール",
+    "settings": "設定",
+    "security": "セキュリティ",
+    "support": "サポート",
+    "logoutConfirmMessage": "ログアウトしてもよろしいですか？",
+    "cancel": "キャンセル"
+  },
+  "language": {
+    "title": "言語",
+    "vi": "Tiếng Việt",
+    "en": "English",
+    "zh": "中文",
+    "ja": "日本語"
+  }
+}

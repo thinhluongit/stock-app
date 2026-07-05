@@ -1,0 +1,99 @@
+{
+  "appName": "Stock App",
+  "login": {
+    "slogan": "Smart stock investing",
+    "account": "Username",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "signIn": "Sign in",
+    "noAccount": "Don't have an account? ",
+    "openAccount": "Register account",
+    "validateEmpty": "Please enter username and password"
+  },
+  "nav": {
+    "market": "Market",
+    "prices": "Prices",
+    "trading": "Trading",
+    "search": "Search",
+    "notifications": "Notifications"
+  },
+  "common": {
+    "all": "All",
+    "stock": "Stocks",
+    "derivatives": "Derivatives",
+    "coveredWarrant": "Warrants",
+    "news": "News",
+    "system": "System",
+    "transaction": "Transactions",
+    "priceAlert": "Price alert",
+    "buy": "BUY",
+    "sell": "SELL",
+    "symbol": "Symbol",
+    "price": "Price",
+    "change": "+/-",
+    "percent": "%",
+    "volume": "Vol",
+    "noResult": "No results found"
+  },
+  "market": {
+    "overview": "Overview",
+    "sector": "Sectors",
+    "marketIndices": "Market indices",
+    "topGainers": "Top gainers",
+    "topLosers": "Top losers",
+    "sectorGroup": "Sector groups"
+  },
+  "prices": {
+    "favorite": "Watchlist",
+    "noSymbol": "No symbols yet"
+  },
+  "trading": {
+    "placeOrder": "Place order",
+    "todayOrders": "Today's orders",
+    "orderBook": "Order book",
+    "portfolio": "Portfolio",
+    "history": "History",
+    "symbolHint": "e.g. VNM",
+    "symbolLabel": "Stock symbol",
+    "quantity": "Quantity",
+    "orderPrice": "Order price",
+    "orderSuccess": "Order placed (demo)!",
+    "statusMatched": "Matched",
+    "statusPending": "Pending",
+    "statusCanceled": "Canceled",
+    "filled": "Filled",
+    "time": "Time",
+    "totalValue": "Total value (million VND)",
+    "profitLoss": "P/L",
+    "avg": "Avg",
+    "simulatedNote": "* Simulated data · color by P/L",
+    "tradeHistory": "Trade history"
+  },
+  "search": {
+    "hint": "Enter symbol or company name..."
+  },
+  "notifications": {
+    "empty": "No notifications yet"
+  },
+  "menu": {
+    "title": "Menu",
+    "logout": "Logout",
+    "userCode": "ID",
+    "cashTransaction": "Cash Transaction",
+    "securitiesTransaction": "Securities Transaction",
+    "accountManagement": "Account Management",
+    "utilities": "Utilities",
+    "settings": "Settings",
+    "security": "Security",
+    "support": "Support",
+    "logoutConfirmMessage": "Are you sure you want to log out?",
+    "cancel": "Cancel"
+  },
+  "language": {
+    "title": "Language",
+    "vi": "Tiếng Việt",
+    "en": "English",
+    "zh": "中文",
+    "ja": "日本語"
+  }
+}
