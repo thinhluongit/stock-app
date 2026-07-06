@@ -49,6 +49,7 @@ class _PlaceOrderState extends State<_PlaceOrder> {
   bool _isNormalOrder = true;
   double _price = 0.0;
   double _volume = 0.0;
+  double _excessPrice = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +92,7 @@ class _PlaceOrderState extends State<_PlaceOrder> {
           onSelected: (quote) {
             setState(() {
               _price = quote.price;
+              _excessPrice = quote.price;
             });
           },
         ),
@@ -128,12 +130,14 @@ class _PlaceOrderState extends State<_PlaceOrder> {
           ],
         ),
         const SizedBox(height: 20),
-        _isNormalOrder ? _buildNormalOrderTab() : _buildConditionalOrderTab(),
+        _isNormalOrder ? _buildNormalOrderTab(_excessPrice) : _buildConditionalOrderTab(),
       ],
     );
   }
 
-  Widget _buildNormalOrderTab() {
+  Widget _buildNormalOrderTab(double price) {
+    final priceValue = price != 0.0 ? price : null;
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
@@ -146,9 +150,9 @@ class _PlaceOrderState extends State<_PlaceOrder> {
               children: [
                 _buildExcessTitle('trading.sellableQuantity'.tr()),
                 const SizedBox(height: 4),
-                _buildExcessQty(true),
+                _buildExcessQty(priceValue, true),
                 const SizedBox(height: 8),
-                _buildExcessQty(false),
+                _buildExcessQty(priceValue, false),
                 const SizedBox(height: 4),
                 _buildExcessTitle('trading.buyingPower'.tr()),
               ],
@@ -193,7 +197,38 @@ class _PlaceOrderState extends State<_PlaceOrder> {
                       });
                     }),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (_) => AlertDialog(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        content: SizedBox(
+                          width: 300,
+                          height: 120,
+                          child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.check_circle,
+                                color: Colors.green,
+                                size: 36,
+                              ),
+                              SizedBox(height: 12),
+                              Text(
+                                'Đặt lệnh thành công',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     width: double.infinity,
@@ -241,7 +276,9 @@ class _PlaceOrderState extends State<_PlaceOrder> {
     );
   }
 
-  Widget _buildHyphenText(bool isSellableExcess) {
+  Widget _buildHyphenText(double? price, bool isSellableExcess) {
+    int volume = price != null ? 100 : 0;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
       decoration: BoxDecoration(
@@ -252,19 +289,19 @@ class _PlaceOrderState extends State<_PlaceOrder> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            '-',
-            style: const TextStyle(
-              color: AppColors.textSecondary,
+            price != null ? '$price' : '-',
+            style: TextStyle(
+              color: price != null ? (isSellableExcess ? AppColors.up : AppColors.down) : Colors.grey[200],
               fontWeight: FontWeight.w700,
-              fontSize: 12,
+              fontSize: 14,
             ),
           ),
           Text(
-            '-',
+            '$volume',
             style: const TextStyle(
               color: AppColors.textSecondary,
               fontWeight: FontWeight.w700,
-              fontSize: 12,
+              fontSize: 14,
             ),
           ),
         ],
@@ -272,12 +309,12 @@ class _PlaceOrderState extends State<_PlaceOrder> {
     );
   }
 
-  Widget _buildExcessQty(bool isSellableExcess) {
+  Widget _buildExcessQty(double? price, bool isSellableExcess) {
     return Column(
       children: [
-        _buildHyphenText(isSellableExcess),
-        _buildHyphenText(isSellableExcess),
-        _buildHyphenText(isSellableExcess),
+        _buildHyphenText(price, isSellableExcess),
+        _buildHyphenText(price, isSellableExcess),
+        _buildHyphenText(price, isSellableExcess),
       ],
     );
   }

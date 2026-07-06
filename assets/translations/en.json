@@ -33,7 +33,10 @@
     "change": "+/-",
     "percent": "%",
     "volume": "Vol",
-    "noResult": "No results found"
+    "noResult": "No results found",
+    "highestVolume": "Highest Volume",
+    "topGainers": "Top Gainers", 
+    "topLosers": "Top Losers"
   },
   "market": {
     "overview": "Overview",
@@ -72,7 +75,8 @@
     "tradeHistory": "Trade history",
     "inputStockHint": "Enter Stock Code",
     "sellableQuantity": "Sellable Quantity",
-    "buyingPower": "Buying Power"
+    "buyingPower": "Buying Power",
+    "viewMore": "View More"
   },
   "search": {
     "hint": "Enter symbol or company name..."

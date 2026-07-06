@@ -310,4 +310,5 @@ class MockData {
   ];
 
   static int get unreadCount => notifications.where((n) => n.unread).length;
+
 }

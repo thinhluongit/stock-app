@@ -33,7 +33,8 @@
     "change": "+/-",
     "percent": "%",
     "volume": "量",
-    "noResult": "未找到结果"
+    "noResult": "未找到结果",
+    "highestVolume": "成交量最高", "topGainers": "涨幅最大", "topLosers": "跌幅最大"
   },
   "market": {
     "overview": "概览",
@@ -72,7 +73,8 @@
     "tradeHistory": "交易历史",
     "inputStockHint": "输入股票代码",
     "sellableQuantity": "可卖数量",
-    "buyingPower": "可买数量"
+    "buyingPower": "可买数量",
+    "viewMore": "查看更多"
   },
   "search": {
     "hint": "输入代码或公司名称..."

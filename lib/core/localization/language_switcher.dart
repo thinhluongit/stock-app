@@ -29,7 +29,7 @@ class LanguageSwitcher extends StatelessWidget {
           children: [
             Text(currentMeta.flag, style: const TextStyle(fontSize: 20)),
             const SizedBox(width: 4),
-            Icon(Icons.arrow_drop_down, color: iconColor, size: 20),
+            Icon(Icons.arrow_drop_down, color: Colors.black, size: 20),
           ],
         ),
       ),

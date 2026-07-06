@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Text(widget.user.username, style: TextStyle(fontSize: 16)),
                 const SizedBox(width: 8),
-                Container(width: 2, height: 18, color: Colors.white),
+                Container(width: 2, height: 18, color: Colors.grey),
                 const SizedBox(width: 8),
                 Text(defaultWallet.id, style: TextStyle(fontSize: 16)),
               ],
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
         actions: [
           const LanguageSwitcher(),
           IconButton(
-            icon: const Icon(Icons.menu),
+            icon: const Icon(Icons.menu, color: Colors.black,),
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => MenuPage(username: widget.user.username),
@@ -85,10 +85,6 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(width: 4),
         ],
       ),
-      // NOTE: no locale key here — we want an in-place rebuild on language
-      // change (preserves each tab's sub-tab selection / scroll state). For
-      // that to re-translate content, NO widget on the path to a `.tr()` call
-      // may be `const` (const widgets are skipped on rebuild).
       body: IndexedStack(index: _index, children: pages),
       bottomNavigationBar: CustomBottomNavBar(
         currentIndex: _index,

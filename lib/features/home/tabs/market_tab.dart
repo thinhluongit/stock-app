@@ -16,19 +16,17 @@ class MarketTab extends StatelessWidget {
       tabs: [
         'market.overview'.tr(),
         'common.stock'.tr(),
-        'common.derivatives'.tr(),
+        // 'common.derivatives'.tr(),
         'common.coveredWarrant'.tr(),
-        'market.sector'.tr(),
+        // 'market.sector'.tr(),
       ],
       views: [
         _Overview(),
         _MoversView(),
-        PlaceholderView(title: 'common.derivatives'.tr(), icon: Icons.timeline),
-        PlaceholderView(
-            title: 'common.coveredWarrant'.tr(),
-            icon: Icons.confirmation_num_outlined),
-        PlaceholderView(
-            title: 'market.sectorGroup'.tr(), icon: Icons.pie_chart_outline),
+        // PlaceholderView(title: 'common.derivatives'.tr(), icon: Icons.timeline),
+        _CoveredWarrantViews(),
+        // PlaceholderView(
+        //     title: 'market.ET'.tr(), icon: Icons.pie_chart_outline),
       ],
     );
   }
@@ -43,7 +41,8 @@ class _Overview extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text('market.marketIndices'.tr(),
-              style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+              style:
+                  const TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
         ),
         const SizedBox(height: 12),
         SizedBox(
@@ -87,6 +86,68 @@ class _MoversView extends StatelessWidget {
   }
 }
 
+class _CoveredWarrantViews extends StatelessWidget {
+  const _CoveredWarrantViews();
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: const EdgeInsets.only(bottom: 16),
+      children: [
+        _buildListByType(0),
+        const SizedBox(height: 8),
+        _buildListByType(1),
+        const SizedBox(height: 8),
+        _buildListByType(2),
+      ],
+    );
+  }
+
+  Widget _buildListByType(int type) {
+    return Container(
+      width: double.infinity,
+      color: Colors.white,
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                type == 0
+                    ? 'common.highestVolume'.tr()
+                    : (type == 1 ? 'common.topGainers'.tr() : 'common.topLosers'.tr()),
+                style: const TextStyle(
+                  color: AppColors.textPrimary,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                'common.viewMore'.tr(),
+                style: const TextStyle(
+                  color: AppColors.textSecondary,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          SizedBox(
+            height: 250,
+            child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (_, index) =>
+                  StockWarrantRow(quote: MockData.quotes[index]),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
 class _SectionTitle extends StatelessWidget {
   const _SectionTitle(this.text);
   final String text;
@@ -106,7 +167,8 @@ class _SectionTitle extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           Text(text,
-              style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+              style:
+                  const TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
         ],
       ),
     );

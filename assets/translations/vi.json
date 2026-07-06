@@ -33,7 +33,9 @@
     "change": "+/-",
     "percent": "%",
     "volume": "KL",
-    "noResult": "Không tìm thấy kết quả"
+    "noResult": "Không tìm thấy kết quả",
+    "viewMore": "Xem thêm",
+    "highestVolume": "Khối lượng lớn nhất", "topGainers": "Tăng mạnh nhất", "topLosers": "Giảm mạnh nhất"
   },
   "market": {
     "overview": "Tổng quan",

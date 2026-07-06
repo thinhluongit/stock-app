@@ -26,28 +26,28 @@ class MarketIndexCard extends StatelessWidget {
         fit: BoxFit.scaleDown,
         alignment: Alignment.centerLeft,
         child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(index.name,
-              style: const TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 13,
-                  color: AppColors.textPrimary)),
-          const SizedBox(height: 8),
-          Text(formatPrice(index.value),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(index.name,
+                style: const TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 13,
+                    color: AppColors.textPrimary)),
+            const SizedBox(height: 8),
+            Text(formatPrice(index.value),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700, fontSize: 20, color: color)),
+            const SizedBox(height: 4),
+            Text(
+              '${formatChange(index.change)}  ${formatPercent(index.percent)}',
               style: TextStyle(
-                  fontWeight: FontWeight.w700, fontSize: 20, color: color)),
-          const SizedBox(height: 4),
-          Text(
-            '${formatChange(index.change)}  ${formatPercent(index.percent)}',
-            style: TextStyle(
-                color: color, fontSize: 12, fontWeight: FontWeight.w600),
-          ),
-          const SizedBox(height: 6),
-          Text('${'common.volume'.tr()}: ${formatVolume(index.volume)}',
-              style: const TextStyle(
-                  color: AppColors.textSecondary, fontSize: 11)),
-        ],
+                  color: color, fontSize: 12, fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 6),
+            Text('${'common.volume'.tr()}: ${formatVolume(index.volume)}',
+                style: const TextStyle(
+                    color: AppColors.textSecondary, fontSize: 11)),
+          ],
         ),
       ),
     );
@@ -134,9 +134,7 @@ class StockQuoteRow extends StatelessWidget {
               child: Text(formatPrice(quote.price),
                   textAlign: TextAlign.right,
                   style: TextStyle(
-                      color: color,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 13)),
+                      color: color, fontWeight: FontWeight.w700, fontSize: 13)),
             ),
             Expanded(
               flex: 2,
@@ -157,6 +155,96 @@ class StockQuoteRow extends StatelessWidget {
                   style: const TextStyle(
                       color: AppColors.textSecondary, fontSize: 10)),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class StockWarrantRow extends StatelessWidget {
+  const StockWarrantRow({super.key, required this.quote, this.onTap});
+  final StockQuote quote;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    // final color = changeColor(quote.change);
+
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        decoration: const BoxDecoration(
+          border: Border(bottom: BorderSide(color: AppColors.divider)),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Text(quote.symbol.toString(),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
+                        color:
+                            quote.change > 0 ? AppColors.up : AppColors.down)),
+                const SizedBox(
+                  width: 8,
+                ),
+                Container(width: 2, height: 14, color: Colors.grey[400]),
+                const SizedBox(
+                  width: 8,
+                ),
+                Text(quote.exchange.toString(),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
+                        color: AppColors.textPrimary)),
+              ],
+            ),
+            Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(quote.price.toString(),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14,
+                            color: quote.change > 0
+                                ? AppColors.up
+                                : AppColors.down)),
+                    Text(quote.volume.toString(),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14,
+                            color: AppColors.textPrimary)),
+                  ],
+                ),
+                const SizedBox(
+                  width: 24,
+                ),
+                Column(
+                  // mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(quote.change.toString(),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14,
+                            color: quote.change > 0
+                                ? AppColors.up
+                                : AppColors.down)),
+                    Text(quote.percent.toString(),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14,
+                            color: AppColors.textPrimary)),
+                  ],
+                )
+              ],
+            )
           ],
         ),
       ),
