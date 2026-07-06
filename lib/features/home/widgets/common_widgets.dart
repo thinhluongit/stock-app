@@ -104,7 +104,7 @@ class StockQuoteRow extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
         decoration: const BoxDecoration(
           border: Border(bottom: BorderSide(color: AppColors.divider)),
         ),
@@ -118,7 +118,7 @@ class StockQuoteRow extends StatelessWidget {
                   Text(quote.symbol,
                       style: const TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: 15,
+                          fontSize: 14,
                           color: AppColors.textPrimary)),
                   const SizedBox(height: 2),
                   Text(quote.company,
@@ -136,26 +136,26 @@ class StockQuoteRow extends StatelessWidget {
                   style: TextStyle(
                       color: color,
                       fontWeight: FontWeight.w700,
-                      fontSize: 14)),
+                      fontSize: 13)),
             ),
             Expanded(
               flex: 2,
               child: Text(formatChange(quote.change),
                   textAlign: TextAlign.right,
-                  style: TextStyle(color: color, fontSize: 13)),
+                  style: TextStyle(color: color, fontSize: 11)),
             ),
             Expanded(
               flex: 2,
               child: Text(formatPercent(quote.percent),
                   textAlign: TextAlign.right,
-                  style: TextStyle(color: color, fontSize: 13)),
+                  style: TextStyle(color: color, fontSize: 11)),
             ),
             Expanded(
               flex: 2,
               child: Text(formatVolume(quote.volume),
                   textAlign: TextAlign.right,
                   style: const TextStyle(
-                      color: AppColors.textSecondary, fontSize: 12)),
+                      color: AppColors.textSecondary, fontSize: 10)),
             ),
           ],
         ),

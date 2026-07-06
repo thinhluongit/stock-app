@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:stock_app/data/mock/mock_data.dart';
 
-import '../../core/localization/language_switcher.dart';
+// import '../../core/localization/language_switcher.dart';
 import '../../core/theme/app_colors.dart';
 import '../home/home_page.dart';
 

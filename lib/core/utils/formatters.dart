@@ -51,3 +51,15 @@ Color changeColor(num change) {
   if (change < 0) return AppColors.down;
   return AppColors.reference;
 }
+
+extension DoubleExtension on double {
+  String toDisplayString() {
+    return this % 1 == 0
+        ? toInt().toString()
+        : toString();
+  }
+
+    double roundTo1Decimal() {
+    return double.parse(toStringAsFixed(1));
+  }
+}

@@ -49,6 +49,8 @@
   },
   "trading": {
     "placeOrder": "注文",
+    "regularOrder": "通常注文",
+    "conditionalOrder": "条件付注文",
     "todayOrders": "当日注文",
     "orderBook": "注文一覧",
     "portfolio": "ポートフォリオ",
@@ -67,7 +69,10 @@
     "profitLoss": "損益",
     "avg": "平均",
     "simulatedNote": "* シミュレーションデータ · 色は損益による",
-    "tradeHistory": "取引履歴"
+    "tradeHistory": "取引履歴",
+    "inputStockHint": "銘柄コードを入力",
+    "sellableQuantity": "売却可能数量",
+    "buyingPower": "買付余力"
   },
   "search": {
     "hint": "銘柄または会社名を入力..."

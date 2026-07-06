@@ -18,7 +18,7 @@ class MockData {
     phone: '0377355633',
     wallets: [
       Wallet(
-        id: 'w01',
+        id: '01',
         name: 'Tài khoản thường',
         accountNumber: '$accountCode-01',
         isDefault: true,
@@ -27,7 +27,7 @@ class MockData {
         stockValue: 342800000,
       ),
       Wallet(
-        id: 'w02',
+        id: '02',
         name: 'Tài khoản ký quỹ',
         accountNumber: '$accountCode-02',
         isDefault: false,
@@ -36,7 +36,7 @@ class MockData {
         stockValue: 156000000,
       ),
       Wallet(
-        id: 'w03',
+        id: '03',
         name: 'Tài khoản phái sinh',
         accountNumber: '$accountCode-03',
         isDefault: false,

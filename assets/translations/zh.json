@@ -49,6 +49,8 @@
   },
   "trading": {
     "placeOrder": "下单",
+    "regularOrder": "普通订单",
+    "conditionalOrder": "条件订单",
     "todayOrders": "当日委托",
     "orderBook": "委托单",
     "portfolio": "持仓",
@@ -67,7 +69,10 @@
     "profitLoss": "盈亏",
     "avg": "均价",
     "simulatedNote": "* 模拟数据 · 颜色按盈亏",
-    "tradeHistory": "交易历史"
+    "tradeHistory": "交易历史",
+    "inputStockHint": "输入股票代码",
+    "sellableQuantity": "可卖数量",
+    "buyingPower": "可买数量"
   },
   "search": {
     "hint": "输入代码或公司名称..."

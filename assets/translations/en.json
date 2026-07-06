@@ -49,6 +49,8 @@
   },
   "trading": {
     "placeOrder": "Place order",
+    "regularOrder": "Regular order",
+    "conditionalOrder": "Conditional order",
     "todayOrders": "Today's orders",
     "orderBook": "Order book",
     "portfolio": "Portfolio",
@@ -67,7 +69,10 @@
     "profitLoss": "P/L",
     "avg": "Avg",
     "simulatedNote": "* Simulated data · color by P/L",
-    "tradeHistory": "Trade history"
+    "tradeHistory": "Trade history",
+    "inputStockHint": "Enter Stock Code",
+    "sellableQuantity": "Sellable Quantity",
+    "buyingPower": "Buying Power"
   },
   "search": {
     "hint": "Enter symbol or company name..."

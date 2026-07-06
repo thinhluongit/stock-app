@@ -48,6 +48,8 @@
     "noSymbol": "Chưa có mã nào"
   },
   "trading": {
+    "regularOrder": "Lệnh thường",
+    "conditionalOrder": "Lệnh điều kiện",
     "placeOrder": "Đặt lệnh",
     "todayOrders": "Lệnh trong ngày",
     "orderBook": "Sổ lệnh",
@@ -67,7 +69,11 @@
     "profitLoss": "Lãi/lỗ",
     "avg": "TB",
     "simulatedNote": "* Số liệu mô phỏng · màu theo lãi/lỗ",
-    "tradeHistory": "Lịch sử giao dịch"
+    "tradeHistory": "Lịch sử giao dịch",
+    "inputStockHint": "Nhập mã chứng khoán",
+    "sellableQuantity": "Dư bán",
+    "buyingPower": "Dư mua"
+
   },
   "search": {
     "hint": "Nhập mã CK hoặc tên công ty..."
