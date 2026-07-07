@@ -56,6 +56,7 @@ class _LoginPageState extends State<LoginPage> {
     MaterialPageRoute(
       builder: (_) => HomePage(
         user: MockData.currentUser,
+        isLoggedIn: true,
       ),
     ),
   );

@@ -1,10 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:stock_app/core/theme/app_colors.dart';
 import 'package:stock_app/data/mock/mock_data.dart';
+import 'package:stock_app/providers/auth_provider.dart';
 
 import '../home/home_page.dart';
-import '../login/login_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -17,38 +18,79 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    _initialize();
+
+    final auth = context.read<AuthProvider>();
+
+    Future.microtask(() async {
+      await auth.autoLogin();
+
+      if (!mounted) return;
+
+      if (auth.isLoggedIn) {
+        Navigator.of(context).pushReplacement(
+          PageRouteBuilder(
+            transitionDuration: const Duration(milliseconds: 1000),
+            pageBuilder: (_, animation, __) => HomePage(
+              user: MockData.currentUser,
+              isLoggedIn: true,
+            ),
+            transitionsBuilder: (_, animation, __, child) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+          ),
+        );
+      } else {
+        Navigator.of(context).pushReplacement(
+          PageRouteBuilder(
+            transitionDuration: const Duration(milliseconds: 1000),
+            pageBuilder: (_, animation, __) => HomePage(
+              user: null,
+              isLoggedIn: false,
+            ),
+            transitionsBuilder: (_, animation, __, child) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+          ),
+        );
+      }
+    });
   }
 
-  Future<void> _initialize() async {
-    // Giả lập thời gian khởi tạo ứng dụng
-    await Future.delayed(const Duration(seconds: 3));
+  // Future<void> _initialize() async {
+  //   // Giả lập thời gian khởi tạo ứng dụng
+  //   await Future.delayed(const Duration(seconds: 3));
 
-    if (!mounted) return;
+  //   if (!mounted) return;
 
-    // TODO:
-    // Đọc token từ SharedPreferences
-    // Kiểm tra token
-    // Refresh token nếu cần
-    // ...
+  //   // TODO:
+  //   // Đọc token từ SharedPreferences
+  //   // Kiểm tra token
+  //   // Refresh token nếu cần
+  //   // ...
 
-    final bool isLoggedIn = false;
+  //   final bool isLoggedIn = false;
 
-    Navigator.of(context).pushReplacement(
-      PageRouteBuilder(
-        transitionDuration: const Duration(milliseconds: 500),
-        pageBuilder: (_, animation, __) => isLoggedIn
-            ? HomePage(user: MockData.currentUser)
-            : const LoginPage(),
-        transitionsBuilder: (_, animation, __, child) {
-          return FadeTransition(
-            opacity: animation,
-            child: child,
-          );
-        },
-      ),
-    );
-  }
+  //   Navigator.of(context).pushReplacement(
+  //     PageRouteBuilder(
+  //       transitionDuration: const Duration(milliseconds: 500),
+  //       pageBuilder: (_, animation, __) => isLoggedIn
+  //           ? HomePage(user: MockData.currentUser)
+  //           : const LoginPage(),
+  //       transitionsBuilder: (_, animation, __, child) {
+  //         return FadeTransition(
+  //           opacity: animation,
+  //           child: child,
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

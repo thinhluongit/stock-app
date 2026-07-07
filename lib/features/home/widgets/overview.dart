@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:stock_app/core/theme/app_colors.dart';
 import 'package:stock_app/features/home/widgets/slanted_clipper.dart';
+import 'package:stock_app/features/login/login_page.dart';
 
 class Overview extends StatefulWidget {
   const Overview({super.key});
@@ -167,21 +168,33 @@ class _OverviewState extends State<Overview> {
         child: Row(
           children: [
             Expanded(
-              child: ClipPath(
-                clipper: SlantedClipper(isLeft: true),
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  decoration: BoxDecoration(
-                      color: AppColors.primary,
-                      borderRadius: BorderRadius.circular(4)),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'menu.login'.tr(),
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (_) => LoginPage(),
+                      ),
+                    );
+                  },
+                  child: ClipPath(
+                    clipper: SlantedClipper(isLeft: true),
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      decoration: BoxDecoration(
+                          color: AppColors.primary,
+                          borderRadius: BorderRadius.circular(4)),
+                      alignment: Alignment.center,
+                      child: Text(
+                        'menu.login'.tr(),
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -223,7 +236,6 @@ class _OverviewState extends State<Overview> {
           _buildOverviewButton(Icons.category, 'Danh mục'),
           _buildOverviewButton(Icons.contact_emergency, 'Xác nhận lệnh Online'),
           _buildOverviewButton(Icons.add_circle, 'Tùy chỉnh'),
-
         ],
       ),
     );
@@ -235,7 +247,9 @@ class _OverviewState extends State<Overview> {
         Container(
           padding: EdgeInsets.all(8),
           margin: EdgeInsets.all(2),
-          decoration: BoxDecoration(color: AppColors.primaryBright, borderRadius: BorderRadius.circular(8)),
+          decoration: BoxDecoration(
+              color: AppColors.primaryBright,
+              borderRadius: BorderRadius.circular(8)),
           child: Icon(icon),
         ),
         Text(

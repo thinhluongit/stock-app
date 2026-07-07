@@ -15,8 +15,9 @@ import 'tabs/trading_tab.dart';
 
 /// Main screen: shared AppBar + 5 fixed large tabs via a custom bottom nav.
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.user});
-  final User user;
+  const HomePage({super.key, this.user, required this.isLoggedIn});
+  final User? user;
+  final bool isLoggedIn;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -43,45 +44,32 @@ class _HomePageState extends State<HomePage> {
       NotificationsTab(),
     ];
 
-    final defaultWallet = MockData.currentUser.wallets.firstWhere(
-      (w) => w.isDefault,
-      orElse: () => MockData.currentUser.wallets.first,
-    );
-
     return Scaffold(
       // AppBar chung cho cả 5 tab lớn.
       appBar: AppBar(
         titleSpacing: 16,
-        title: Column(
-          children: [
-            Row(
-              children: [
-                Text(widget.user.username, style: TextStyle(fontSize: 16)),
-                const SizedBox(width: 8),
-                Container(width: 2, height: 18, color: Colors.grey),
-                const SizedBox(width: 8),
-                Text(defaultWallet.id, style: TextStyle(fontSize: 16)),
-              ],
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                widget.user.fullName,
-                style: const TextStyle(fontSize: 16),
+        title: (widget.user != null && widget.isLoggedIn == true)
+            ? _buildUserAppbarInfo(widget.user!)
+            : Text(
+                'appName'.tr(),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-            ),
-          ],
-        ),
         actions: [
           const LanguageSwitcher(),
-          IconButton(
-            icon: const Icon(Icons.menu, color: Colors.black,),
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => MenuPage(username: widget.user.username),
-              ),
-            ),
-          ),
+          (widget.user != null && widget.isLoggedIn == true)
+              ? IconButton(
+                  icon: const Icon(
+                    Icons.menu,
+                    color: Colors.black,
+                  ),
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) =>
+                          MenuPage(username: widget.user?.username ?? ''),
+                    ),
+                  ),
+                )
+              : const SizedBox(),
           const SizedBox(width: 4),
         ],
       ),
@@ -110,6 +98,34 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildUserAppbarInfo(User user) {
+    final defaultWallet = MockData.currentUser.wallets.firstWhere(
+      (w) => w.isDefault,
+      orElse: () => MockData.currentUser.wallets.first,
+    );
+
+    return Column(
+      children: [
+        Row(
+          children: [
+            Text(user.username, style: TextStyle(fontSize: 16)),
+            const SizedBox(width: 8),
+            Container(width: 2, height: 18, color: Colors.grey),
+            const SizedBox(width: 8),
+            Text(defaultWallet.id, style: TextStyle(fontSize: 16)),
+          ],
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            user.fullName,
+            style: const TextStyle(fontSize: 16),
+          ),
+        ),
+      ],
     );
   }
 }
