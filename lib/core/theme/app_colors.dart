@@ -8,6 +8,8 @@ class AppColors {
   static const Color primary = Color(0xFF00A651);
   static const Color primaryDark = Color(0xFF00783B);
   static const Color primaryLight = Color(0xFFE6F6EC);
+  static const Color primaryBright = Color.fromARGB(255, 86, 206, 132);
+
 
   // Stock board semantic colors (theo bảng giá chứng khoán VN)
   static const Color up = Color(0xFF00A651); // giá tăng - xanh

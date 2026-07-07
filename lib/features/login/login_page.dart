@@ -27,19 +27,39 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> _login() async {
-    if (_userCtrl.text.trim().isEmpty || _passCtrl.text.isEmpty) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('login.validateEmpty'.tr())));
-      return;
-    }
-    setState(() => _loading = true);
-    await Future<void>.delayed(const Duration(milliseconds: 600)); // giả lập
-    if (!mounted) return;
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => HomePage(user: MockData.currentUser)),
+  if (_userCtrl.text.trim().isEmpty || _passCtrl.text.isEmpty) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(
+      SnackBar(
+        content: Text('login.validateEmpty'.tr()),
+      ),
     );
+    return;
   }
+
+  setState(() => _loading = true);
+
+  // Giả lập gọi API
+  await Future.delayed(const Duration(milliseconds: 600));
+
+  if (!mounted) return;
+
+  setState(() => _loading = false);
+
+  // TODO:
+  // Gọi API Login
+  // Lưu token vào SharedPreferences
+  // Lưu thông tin user
+
+  Navigator.of(context).pushReplacement(
+    MaterialPageRoute(
+      builder: (_) => HomePage(
+        user: MockData.currentUser,
+      ),
+    ),
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -84,8 +104,8 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    const Text(
-                      'Stock App',
+                    Text(
+                      'appName'.tr(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 26,
@@ -99,7 +119,8 @@ class _LoginPageState extends State<LoginPage> {
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: AppColors.textSecondary,
-                        fontSize: 14,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold
                       ),
                     ),
                     const SizedBox(height: 40),

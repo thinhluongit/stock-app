@@ -86,6 +86,8 @@
   "menu": {
     "title": "Menu",
     "logout": "Đăng xuất",
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
     "userCode": "Mã KH",
     "cashTransaction": "Giao dịch Tiền",
     "securitiesTransaction": "Giao dịch Chứng khoán",

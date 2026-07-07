@@ -34,7 +34,8 @@
     "percent": "%",
     "volume": "出来高",
     "noResult": "結果が見つかりません",
-    "highestVolume": "出来高上位", "topGainers": "値上がり率上位", "topLosers": "値下がり率上位"
+    "highestVolume": "出来高上位", "topGainers": "値上がり率上位", "topLosers": "値下がり率上位",
+    "viewMore": "もっと見る"
   },
   "market": {
     "overview": "概要",
@@ -73,8 +74,7 @@
     "tradeHistory": "取引履歴",
     "inputStockHint": "銘柄コードを入力",
     "sellableQuantity": "売却可能数量",
-    "buyingPower": "買付余力",
-    "viewMore": "もっと見る"
+    "buyingPower": "買付余力"
   },
   "search": {
     "hint": "銘柄または会社名を入力..."
@@ -85,6 +85,8 @@
   "menu": {
     "title": "メニュー",
     "logout": "ログアウト",
+    "login": "ログイン",
+    "register": "新規登録",
     "userCode": "顧客番号",
     "cashTransaction": "資金取引",
     "securitiesTransaction": "証券取引",

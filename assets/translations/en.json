@@ -36,7 +36,8 @@
     "noResult": "No results found",
     "highestVolume": "Highest Volume",
     "topGainers": "Top Gainers", 
-    "topLosers": "Top Losers"
+    "topLosers": "Top Losers",
+    "viewMore": "View More"
   },
   "market": {
     "overview": "Overview",
@@ -75,8 +76,7 @@
     "tradeHistory": "Trade history",
     "inputStockHint": "Enter Stock Code",
     "sellableQuantity": "Sellable Quantity",
-    "buyingPower": "Buying Power",
-    "viewMore": "View More"
+    "buyingPower": "Buying Power"
   },
   "search": {
     "hint": "Enter symbol or company name..."
@@ -87,6 +87,8 @@
   "menu": {
     "title": "Menu",
     "logout": "Logout",
+    "login": "Login",
+    "register": "Register", 
     "userCode": "ID",
     "cashTransaction": "Cash Transaction",
     "securitiesTransaction": "Securities Transaction",

@@ -462,32 +462,32 @@ class _SideButton extends StatelessWidget {
   }
 }
 
-class _Field extends StatelessWidget {
-  const _Field({required this.label, required this.hint, this.keyboard});
-  final String label;
-  final String hint;
-  final TextInputType? keyboard;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 14),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            label,
-            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
-          ),
-          const SizedBox(height: 6),
-          TextField(
-            keyboardType: keyboard,
-            decoration: InputDecoration(hintText: hint),
-          ),
-        ],
-      ),
-    );
-  }
-}
+// class _Field extends StatelessWidget {
+//   const _Field({required this.label, required this.hint, this.keyboard});
+//   final String label;
+//   final String hint;
+//   final TextInputType? keyboard;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.only(bottom: 14),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Text(
+//             label,
+//             style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+//           ),
+//           const SizedBox(height: 6),
+//           TextField(
+//             keyboardType: keyboard,
+//             decoration: InputDecoration(hintText: hint),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 // class _SearchField extends StatelessWidget {
 //   const _SearchField({required this.label, required this.hint, this.keyboard});
@@ -704,11 +704,11 @@ class _SearchResultsState extends State<_SearchResults> {
             )
           else
             Container(
-              // decoration: BoxDecoration(
-              //   border: Border.all(color: Colors.grey.shade200),
-              //   borderRadius: BorderRadius.circular(8),
-              //   color:  Colors.grey.shade200
-              // ),
+              decoration: BoxDecoration(
+                // border: Border.all(color: Colors.grey.shade200),
+                // borderRadius: BorderRadius.circular(8),
+                // color:  Colors.grey.shade200
+              ),
               child: ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
