@@ -106,5 +106,25 @@
     "en": "English",
     "zh": "中文",
     "ja": "日本語"
+  },
+  "register": {
+  "title": "Tạo tài khoản",
+  "slogan": "Bắt đầu hành trình đầu tư của bạn",
+  "fullName": "Họ và tên",
+  "confirmPassword": "Xác nhận mật khẩu",
+  "agreeTerms": "Tôi đồng ý với Điều khoản sử dụng và Chính sách bảo mật",
+  "signUp": "Đăng ký",
+  "hasAccount": "Đã có tài khoản? ",
+  "backToLogin": "Đăng nhập",
+  "success": "Đăng ký thành công!",
+  "failed": "Đăng ký thất bại, vui lòng thử lại",
+  "mustAgreeTerms": "Vui lòng đồng ý điều khoản sử dụng",
+  "validateFullName": "Vui lòng nhập họ tên",
+  "validateAccount": "Vui lòng nhập số điện thoại",
+  "validatePhoneFormat": "Số điện thoại không hợp lệ",
+  "validatePassword": "Vui lòng nhập mật khẩu",
+  "validatePasswordLength": "Mật khẩu tối thiểu 6 ký tự",
+  "validateConfirmPassword": "Vui lòng xác nhận mật khẩu",
+  "validatePasswordMismatch": "Mật khẩu xác nhận không khớp"
   }
 }

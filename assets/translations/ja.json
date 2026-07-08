@@ -105,5 +105,25 @@
     "en": "English",
     "zh": "中文",
     "ja": "日本語"
+  },
+  "register": {
+    "title": "アカウント作成",
+    "slogan": "投資の旅を始めましょう",
+    "fullName": "氏名",
+    "confirmPassword": "パスワード（確認）",
+    "agreeTerms": "利用規約およびプライバシーポリシーに同意します",
+    "signUp": "登録",
+    "hasAccount": "すでにアカウントをお持ちですか？ ",
+    "backToLogin": "ログイン",
+    "success": "登録に成功しました！",
+    "failed": "登録に失敗しました。もう一度お試しください。",
+    "mustAgreeTerms": "利用規約に同意してください",
+    "validateFullName": "氏名を入力してください",
+    "validateAccount": "電話番号を入力してください",
+    "validatePhoneFormat": "電話番号の形式が正しくありません",
+    "validatePassword": "パスワードを入力してください",
+    "validatePasswordLength": "パスワードは6文字以上で入力してください",
+    "validateConfirmPassword": "確認用パスワードを入力してください",
+    "validatePasswordMismatch": "確認用パスワードが一致しません"
   }
 }

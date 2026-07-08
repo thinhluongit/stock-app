@@ -105,5 +105,25 @@
     "en": "English",
     "zh": "中文",
     "ja": "日本語"
+  },
+  "register": {
+    "title": "创建账户",
+    "slogan": "开启您的投资之旅",
+    "fullName": "姓名",
+    "confirmPassword": "确认密码",
+    "agreeTerms": "我同意《使用条款》和《隐私政策》",
+    "signUp": "注册",
+    "hasAccount": "已有账户？ ",
+    "backToLogin": "登录",
+    "success": "注册成功！",
+    "failed": "注册失败，请重试",
+    "mustAgreeTerms": "请同意使用条款",
+    "validateFullName": "请输入姓名",
+    "validateAccount": "请输入手机号码",
+    "validatePhoneFormat": "手机号格式无效",
+    "validatePassword": "请输入密码",
+    "validatePasswordLength": "密码至少需要6个字符",
+    "validateConfirmPassword": "请确认密码",
+    "validatePasswordMismatch": "两次输入的密码不一致"
   }
 }

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stock_app/data/mock/mock_data.dart';
+import 'package:stock_app/features/login/register_page.dart';
 import 'package:stock_app/providers/auth_provider.dart';
 
 // import '../../core/localization/language_switcher.dart';
@@ -193,7 +194,13 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (_) => RegisterPage(),
+                              ),
+                            );
+                          },
                           style: TextButton.styleFrom(
                             padding: EdgeInsets.zero,
                             minimumSize: const Size(0, 0),
@@ -222,69 +229,71 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildFooterLogin() {
     return Container(
+      margin: EdgeInsets.symmetric(vertical: 24),
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 32),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          _buildFooterButton(Icons.money_rounded, 'Thị trường'),
           _buildFooterButton(Icons.notification_add, 'Thông báo'),
+          _buildFooterButton(Icons.contact_phone, 'Liên hệ'),
         ],
       ),
     );
   }
 
   Widget _buildFooterButton(IconData icon, String feature) {
-  return Column(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      SizedBox(
-        width: 40,
-        height: 40,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            // Bệ đỡ hình elip
-            Positioned(
-              bottom: 3,
-              child: Container(
-                width: 32,
-                height: 6,
-                decoration: BoxDecoration(
-                  color: Colors.blue.withOpacity(0.15),
-                  borderRadius: BorderRadius.circular(50),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.blue.withOpacity(0.15),
-                      blurRadius: 4,
-                      spreadRadius: 1,
-                    ),
-                  ],
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          width: 40,
+          height: 40,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              // Bệ đỡ hình elip
+              Positioned(
+                bottom: 3,
+                child: Container(
+                  width: 32,
+                  height: 6,
+                  decoration: BoxDecoration(
+                    color: Colors.blue.withOpacity(0.15),
+                    borderRadius: BorderRadius.circular(50),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.blue.withOpacity(0.15),
+                        blurRadius: 4,
+                        spreadRadius: 1,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
 
-            // Icon
-            Positioned(
-              bottom: 7,
-              child: Icon(
-                icon,
-                size: 26,
-                color: AppColors.primary,
+              // Icon
+              Positioned(
+                bottom: 7,
+                child: Icon(
+                  icon,
+                  size: 26,
+                  color: AppColors.primary,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-
-
-      Text(
-        feature,
-        style: const TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-          color: AppColors.textSecondary,
+        Text(
+          feature,
+          style: const TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w500,
+            color: AppColors.textPrimary,
+          ),
         ),
-      ),
-    ],
-  );
-}
+      ],
+    );
+  }
 }

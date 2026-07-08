@@ -107,5 +107,25 @@
     "en": "English",
     "zh": "中文",
     "ja": "日本語"
+  },
+  "register": {
+    "title": "Create Account",
+    "slogan": "Start your investment journey",
+    "fullName": "Full Name",
+    "confirmPassword": "Confirm Password",
+    "agreeTerms": "I agree to the Terms of Use and Privacy Policy",
+    "signUp": "Sign Up",
+    "hasAccount": "Already have an account? ",
+    "backToLogin": "Login",
+    "success": "Registration successful!",
+    "failed": "Registration failed. Please try again.",
+    "mustAgreeTerms": "Please agree to the Terms of Use",
+    "validateFullName": "Please enter your full name",
+    "validateAccount": "Please enter your phone number",
+    "validatePhoneFormat": "Invalid phone number",
+    "validatePassword": "Please enter your password",
+    "validatePasswordLength": "Password must be at least 6 characters",
+    "validateConfirmPassword": "Please confirm your password",
+    "validatePasswordMismatch": "Passwords do not match"
   }
 }
