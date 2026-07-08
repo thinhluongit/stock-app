@@ -35,7 +35,8 @@
     "volume": "KL",
     "noResult": "Không tìm thấy kết quả",
     "viewMore": "Xem thêm",
-    "highestVolume": "Khối lượng lớn nhất", "topGainers": "Tăng mạnh nhất", "topLosers": "Giảm mạnh nhất"
+    "highestVolume": "Khối lượng lớn nhất", "topGainers": "Tăng mạnh nhất", "topLosers": "Giảm mạnh nhất",
+    "netAssetValue": "Tài sản ròng (NAV)"
   },
   "market": {
     "overview": "Tổng quan",

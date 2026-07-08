@@ -37,7 +37,8 @@
     "highestVolume": "Highest Volume",
     "topGainers": "Top Gainers", 
     "topLosers": "Top Losers",
-    "viewMore": "View More"
+    "viewMore": "View More",
+    "netAssetValue": "Net Asset Value (NAV)"
   },
   "market": {
     "overview": "Overview",

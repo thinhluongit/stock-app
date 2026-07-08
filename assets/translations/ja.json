@@ -35,7 +35,8 @@
     "volume": "出来高",
     "noResult": "結果が見つかりません",
     "highestVolume": "出来高上位", "topGainers": "値上がり率上位", "topLosers": "値下がり率上位",
-    "viewMore": "もっと見る"
+    "viewMore": "もっと見る",
+    "netAssetValue": "净资产值（NAV）"
   },
   "market": {
     "overview": "概要",

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:stock_app/services/auth_service.dart';
 
 class AuthProvider extends ChangeNotifier {
   bool _isLoggedIn = false;
   bool _isLoading = false;
   String? _token;
+  final AuthService _service = AuthService();
 
   bool get isLoggedIn => _isLoggedIn;
   bool get isLoading => _isLoading;
@@ -27,17 +29,25 @@ class AuthProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    await Future.delayed(const Duration(milliseconds: 600));
+    final token = await _service.login(
+      username: username,
+      password: password,
+    );
+
+    // await Future.delayed(const Duration(milliseconds: 600));
 
     // TODO: Gọi API Login
-
-    _token = "mock_token";
-    _isLoggedIn = true;
-
+    
     _isLoading = false;
-    notifyListeners();
 
-    return true;
+    if (token != null) {
+      _isLoggedIn = true;
+      notifyListeners();
+      return true;
+    }
+
+    notifyListeners();
+    return false;
   }
 
   Future<void> logout() async {

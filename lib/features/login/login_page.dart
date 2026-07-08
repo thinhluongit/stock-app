@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:stock_app/data/mock/mock_data.dart';
+import 'package:stock_app/providers/auth_provider.dart';
 
 // import '../../core/localization/language_switcher.dart';
 import '../../core/theme/app_colors.dart';
@@ -27,40 +29,47 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> _login() async {
-  if (_userCtrl.text.trim().isEmpty || _passCtrl.text.isEmpty) {
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(
-      SnackBar(
-        content: Text('login.validateEmpty'.tr()),
-      ),
-    );
-    return;
+    if (_userCtrl.text.trim().isEmpty || _passCtrl.text.isEmpty) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(
+        SnackBar(
+          content: Text('login.validateEmpty'.tr()),
+        ),
+      );
+      return;
+    }
+
+    setState(() => _loading = true);
+
+    final success = await context.read<AuthProvider>().login(
+          username: _userCtrl.text,
+          password: _passCtrl.text,
+        );
+
+    // Giả lập gọi API
+    await Future.delayed(const Duration(milliseconds: 600));
+
+    if (!mounted) return;
+
+    setState(() => _loading = false);
+
+    // TODO:
+    // Gọi API Login
+    // Lưu token vào SharedPreferences
+    // Lưu thông tin user
+
+    if (success == true && context.mounted) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (_) => HomePage(
+            user: MockData.currentUser,
+            isLoggedIn: true,
+          ),
+        ),
+      );
+    }
   }
-
-  setState(() => _loading = true);
-
-  // Giả lập gọi API
-  await Future.delayed(const Duration(milliseconds: 600));
-
-  if (!mounted) return;
-
-  setState(() => _loading = false);
-
-  // TODO:
-  // Gọi API Login
-  // Lưu token vào SharedPreferences
-  // Lưu thông tin user
-
-  Navigator.of(context).pushReplacement(
-    MaterialPageRoute(
-      builder: (_) => HomePage(
-        user: MockData.currentUser,
-        isLoggedIn: true,
-      ),
-    ),
-  );
-}
 
   @override
   Widget build(BuildContext context) {
@@ -119,10 +128,9 @@ class _LoginPageState extends State<LoginPage> {
                       'login.slogan'.tr(),
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                        color: AppColors.textSecondary,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold
-                      ),
+                          color: AppColors.textSecondary,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 40),
                     TextField(
@@ -201,6 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ],
                     ),
+                    _buildFooterLogin(),
                   ],
                 ),
               ),
@@ -210,4 +219,72 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+  Widget _buildFooterLogin() {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        children: [
+          _buildFooterButton(Icons.notification_add, 'Thông báo'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFooterButton(IconData icon, String feature) {
+  return Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      SizedBox(
+        width: 40,
+        height: 40,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            // Bệ đỡ hình elip
+            Positioned(
+              bottom: 3,
+              child: Container(
+                width: 32,
+                height: 6,
+                decoration: BoxDecoration(
+                  color: Colors.blue.withOpacity(0.15),
+                  borderRadius: BorderRadius.circular(50),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.blue.withOpacity(0.15),
+                      blurRadius: 4,
+                      spreadRadius: 1,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            // Icon
+            Positioned(
+              bottom: 7,
+              child: Icon(
+                icon,
+                size: 26,
+                color: AppColors.primary,
+              ),
+            ),
+          ],
+        ),
+      ),
+
+
+      Text(
+        feature,
+        style: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          color: AppColors.textSecondary,
+        ),
+      ),
+    ],
+  );
+}
 }

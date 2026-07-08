@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:stock_app/core/theme/app_colors.dart';
 import 'package:stock_app/features/home/widgets/slanted_clipper.dart';
 import 'package:stock_app/features/login/login_page.dart';
+import 'package:stock_app/providers/auth_provider.dart';
 
 class Overview extends StatefulWidget {
   const Overview({super.key});
@@ -155,9 +157,37 @@ class _OverviewState extends State<Overview> {
   }
 
   Widget _buildContentBottom() {
+    final isLoggedIn = context.watch<AuthProvider>().isLoggedIn;
+
     return Container(
       padding: EdgeInsets.all(16),
-      child: Column(children: [_buildAutherSwitcher(), _buildOverviewMenu()]),
+      child: Column(children: [
+        isLoggedIn ? _buidNetWorthInfo() : _buildAutherSwitcher(),
+        _buildOverviewMenu()
+      ]),
+    );
+  }
+
+  Widget _buidNetWorthInfo() {
+    return Padding(
+      padding: EdgeInsets.all(16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'common.netAssetValue'.tr(),
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+          ),
+          const SizedBox(
+            width: 4,
+          ),
+          Text('-------', style: TextStyle(color: AppColors.primary)),
+          const SizedBox(
+            width: 4,
+          ),
+          Icon(Icons.change_circle_outlined)
+        ],
+      ),
     );
   }
 
@@ -172,11 +202,19 @@ class _OverviewState extends State<Overview> {
                 color: Colors.transparent,
                 child: InkWell(
                   onTap: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (_) => LoginPage(),
-                      ),
-                    );
+                    Navigator.of(context).pushAndRemoveUntil(
+                        PageRouteBuilder(
+                          transitionDuration:
+                              const Duration(milliseconds: 500),
+                          pageBuilder: (_, animation, __) => const LoginPage(),
+                          transitionsBuilder: (_, animation, __, child) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            );
+                          },
+                        ),
+                        (route) => false);
                   },
                   child: ClipPath(
                     clipper: SlantedClipper(isLeft: true),

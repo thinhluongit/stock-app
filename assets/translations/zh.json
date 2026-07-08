@@ -35,7 +35,8 @@
     "volume": "量",
     "noResult": "未找到结果",
     "highestVolume": "成交量最高", "topGainers": "涨幅最大", "topLosers": "跌幅最大",
-    "viewMore": "查看更多"
+    "viewMore": "查看更多",
+    "netAssetValue": "純資産額（NAV）"
   },
   "market": {
     "overview": "概览",

@@ -41,6 +41,28 @@ class StockQuote {
 
   double get ceiling => (reference * 1.07);
   double get floor => (reference * 0.93);
+
+  StockQuote copyWith({
+    String? symbol,
+    String? company,
+    double? reference,
+    double? price,
+    double? change,
+    double? percent,
+    double? volume,
+    String? exchange,
+  }) {
+    return StockQuote(
+      symbol: symbol ?? this.symbol,
+      company: company ?? this.company,
+      reference: reference ?? this.reference,
+      price: price ?? this.price,
+      change: change ?? this.change,
+      percent: percent ?? this.percent,
+      volume: volume ?? this.volume,
+      exchange: exchange ?? this.exchange,
+    );
+  }
 }
 
 enum OrderSide { buy, sell }
