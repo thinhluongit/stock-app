@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(flutter test *)",
+      "PowerShell($dl = \\(New-Object -ComObject Shell.Application\\).Namespace\\('shell:Downloads'\\).Self.Path; if \\(-not $dl\\) { $dl = Join-Path $env:USERPROFILE 'Downloads' }; Write-Output $dl; Test-Path $dl)",
+      "Read(//c/Users/PC/AppData/Local/Pub/Cache/hosted/pub.dev/easy_localization-3.0.8/lib/src/**)",
+      "Read(//c/Users/PC/Downloads/**)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\PC\\Downloads"
+    ]
+  }
+}

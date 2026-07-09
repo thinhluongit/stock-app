@@ -44,7 +44,8 @@
     "marketIndices": "市場指数",
     "topGainers": "値上がり率",
     "topLosers": "値下がり率",
-    "sectorGroup": "業種グループ"
+    "sectorGroup": "業種グループ",
+    "reference": "基準値"
   },
   "prices": {
     "favorite": "お気に入り",

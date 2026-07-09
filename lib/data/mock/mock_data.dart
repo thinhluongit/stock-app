@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:stock_app/data/models/menu_item.dart';
 import 'package:stock_app/features/menu/cash_transaction/internal_transfer_page.dart';
 
@@ -80,6 +82,57 @@ class MockData {
       volume: 41000000,
     ),
   ];
+
+  static MarketIndex indexByName(String name) =>
+      indices.firstWhere((i) => i.name == name);
+
+  /// The HOSE trading session, sampled every 5 minutes. The lunch break
+  /// (11:30–13:00) is simply absent, so a category axis draws no flat gap.
+  static List<DateTime> get _sessionTimes => [
+        for (var m = 9 * 60; m <= 11 * 60 + 30; m += 5)
+          _sessionDay.add(Duration(minutes: m)),
+        for (var m = 13 * 60; m <= 14 * 60 + 45; m += 5)
+          _sessionDay.add(Duration(minutes: m)),
+      ];
+
+  /// Fixed so the mock never depends on the wall clock.
+  static final DateTime _sessionDay = DateTime(2026, 7, 9);
+
+  static final Map<String, List<IndexTick>> _intradayCache = {};
+
+  /// Intraday line for [index], cached so a rebuild never reshuffles the chart.
+  static List<IndexTick> intradayOf(MarketIndex index) =>
+      _intradayCache.putIfAbsent(index.name, () => _buildIntraday(index));
+
+  /// A random walk pinned at both ends: it opens at yesterday's close and lands
+  /// exactly on [MarketIndex.value], so the chart agrees with the header.
+  static List<IndexTick> _buildIntraday(MarketIndex index) {
+    final times = _sessionTimes;
+    final n = times.length;
+
+    // Seeded off the name so every launch draws the same line.
+    final seed =
+        index.name.codeUnits.fold<int>(17, (h, c) => (h * 31 + c) & 0x7fffffff);
+    final random = Random(seed);
+
+    final stepSize = index.value * 0.0011;
+    final walk = List<double>.filled(n, 0);
+    for (var i = 1; i < n; i++) {
+      walk[i] = walk[i - 1] + (random.nextDouble() - 0.5) * 2 * stepSize;
+    }
+
+    // Spread the closing error across the walk instead of jumping at the end.
+    final reference = index.reference;
+    final drift = index.value - reference - walk[n - 1];
+
+    return [
+      for (var i = 0; i < n; i++)
+        IndexTick(
+          time: times[i],
+          value: reference + walk[i] + drift * (i / (n - 1)),
+        ),
+    ];
+  }
 
   static const List<StockQuote> quotes = [
     StockQuote(

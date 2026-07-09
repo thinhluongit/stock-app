@@ -46,7 +46,8 @@
     "marketIndices": "Market indices",
     "topGainers": "Top gainers",
     "topLosers": "Top losers",
-    "sectorGroup": "Sector groups"
+    "sectorGroup": "Sector groups",
+    "reference": "Ref"
   },
   "prices": {
     "favorite": "Watchlist",

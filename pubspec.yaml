@@ -40,12 +40,16 @@ dependencies:
     path: packages/custom_bottom_nav
 
   easy_localization: ^3.0.5
-  json_annotation: ^4.9.0  
+  json_annotation: ^4.9.0
   provider: ^6.1.5
   dio: ^5.9.0
   flutter_secure_storage: ^9.2.2
   firebase_core: ^4.0.0
   firebase_auth: ^6.0.0
+
+  # Charts. NOTE: the 20.x line requires Dart <3.0.0 and intl <0.20.0, so it
+  # cannot resolve against this project's SDK or easy_localization.
+  syncfusion_flutter_charts: ^34.1.30
 
 dev_dependencies:
   flutter_test:

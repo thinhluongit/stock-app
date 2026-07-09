@@ -15,6 +15,20 @@ class MarketIndex {
   final double change;
   final double percent;
   final double volume; // shares
+
+  /// Yesterday's close: the line the intraday chart is measured against.
+  double get reference => value - change;
+
+  bool get isUp => change > 0;
+  bool get isDown => change < 0;
+}
+
+/// One point on an index's intraday line.
+class IndexTick {
+  const IndexTick({required this.time, required this.value});
+
+  final DateTime time;
+  final double value;
 }
 
 /// A single stock quote row shown on the price board.

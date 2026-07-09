@@ -44,7 +44,8 @@
     "marketIndices": "市场指数",
     "topGainers": "涨幅榜",
     "topLosers": "跌幅榜",
-    "sectorGroup": "行业板块"
+    "sectorGroup": "行业板块",
+    "reference": "参考价"
   },
   "prices": {
     "favorite": "自选",

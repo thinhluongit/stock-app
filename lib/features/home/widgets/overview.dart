@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stock_app/core/theme/app_colors.dart';
+import 'package:stock_app/features/home/widgets/index_chart.dart';
 import 'package:stock_app/features/home/widgets/slanted_clipper.dart';
 import 'package:stock_app/features/login/login_page.dart';
 import 'package:stock_app/features/login/register_page.dart';
@@ -164,7 +165,8 @@ class _OverviewState extends State<Overview> {
       padding: EdgeInsets.all(16),
       child: Column(children: [
         isLoggedIn ? _buidNetWorthInfo() : _buildAutherSwitcher(),
-        _buildOverviewMenu()
+        _buildOverviewMenu(),
+        const IndexChart(),
       ]),
     );
   }
