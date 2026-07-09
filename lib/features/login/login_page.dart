@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stock_app/features/login/register_page.dart';
 import 'package:stock_app/providers/auth_provider.dart';
+import 'package:stock_app/providers/user_provider.dart';
+import 'package:stock_app/services/auth_service.dart';
 
 // import '../../core/localization/language_switcher.dart';
 import '../../core/theme/app_colors.dart';
@@ -22,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   final _passCtrl = TextEditingController();
   bool _obscure = true;
   bool _loading = false;
+  final authService = AuthService();
 
   @override
   void dispose() {
@@ -62,14 +65,19 @@ class _LoginPageState extends State<LoginPage> {
     // Lưu thông tin user
 
     if (success == true && context.mounted) {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (_) => HomePage(
-            // user: MockData.currentUser,
-            isLoggedIn: true,
+      final firebaseUser = authService.currentUser;
+
+      if (firebaseUser != null) {
+        context.read<UserProvider>().setUser(firebaseUser);
+      }
+
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (_) => HomePage(
+              isLoggedIn: true,
+            ),
           ),
-        ),
-      );
+          (route) => false);
     }
   }
 

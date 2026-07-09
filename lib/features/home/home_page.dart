@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             ? _buildUserAppbarInfo(user)
             : Text(
                 'appName'.tr(),
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppColors.primary),
               ),
         actions: [
           const LanguageSwitcher(),
@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(width: 8),
             Container(width: 2, height: 18, color: Colors.grey),
             const SizedBox(width: 8),
-            Text(defaultWallet.id, style: TextStyle(fontSize: 16)),
+            Text(defaultWallet.id, style: TextStyle(fontSize: 16, color: AppColors.primary), ),
           ],
         ),
         Align(
