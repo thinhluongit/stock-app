@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../../core/localization/language_switcher.dart';
 import '../../core/theme/app_colors.dart';
-import '../../data/mock/mock_data.dart';
 import '../login/login_page.dart';
 
 /// Account menu screen pushed from the Home AppBar.
@@ -21,7 +20,10 @@ class MenuPage extends StatelessWidget {
     final items = <({IconData icon, String labelKey})>[
       (icon: Icons.payments_outlined, labelKey: 'menu.cashTransaction'),
       (icon: Icons.candlestick_chart, labelKey: 'menu.securitiesTransaction'),
-      (icon: Icons.manage_accounts_outlined, labelKey: 'menu.accountManagement'),
+      (
+        icon: Icons.manage_accounts_outlined,
+        labelKey: 'menu.accountManagement'
+      ),
       (icon: Icons.widgets_outlined, labelKey: 'menu.utilities'),
       (icon: Icons.settings_outlined, labelKey: 'menu.settings'),
       (icon: Icons.verified_user_outlined, labelKey: 'menu.security'),
@@ -29,26 +31,97 @@ class MenuPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('menu.title'.tr()),
-        actions: const [LanguageSwitcher(), SizedBox(width: 4)],
-      ),
-      body: ListView(
-        children: [
-          _AccountHeader(
-            username: username,
-            onLogout: () => _confirmLogout(context),
-          ),
-          const SizedBox(height: 8),
-          for (final it in items)
-            _MenuTile(
-              icon: it.icon,
-              label: it.labelKey.tr(),
-              onTap: () {},
+        appBar: AppBar(
+          title: Text('menu.title'.tr()),
+          actions: const [LanguageSwitcher(), SizedBox(width: 4)],
+          elevation: 8,
+          shadowColor: Colors.black.withOpacity(0.15),
+          surfaceTintColor: Colors.transparent,
+        ),
+        body: ListView(
+          
+          children: [
+            _AccountHeader(
+              username: username,
+              onLogout: () => _confirmLogout(context),
             ),
-        ],
-      ),
-    );
+            const SizedBox(height: 8),
+            for (final it in items) ...[
+              Container(
+                color: Colors.white,
+                child: _MenuExpansionTile(
+                  icon: it.icon,
+                  label: it.labelKey.tr(),
+                  children: _buildMenuChildren(it.labelKey),
+                ),
+              ),
+              _buildDivider(72),
+            ],
+          ],
+        ));
+  }
+
+  Widget _buildDivider(double left) {
+    return Padding(
+        padding: EdgeInsets.only(left: left),
+        child: Divider(
+          height: 1,
+        ));
+  }
+
+  List<Widget> _buildMenuChildren(String parentLabelKey) {
+    final Map<String, List<String>> menus = {
+      'menu.cashTransaction': [
+        'menu.internalTransfer',
+        'menu.externalTransfer',
+        'menu.advanceOnSaleProceeds',
+      ],
+      'menu.securitiesTransaction': [
+        'menu.securitiesTransfer',
+        'menu.rightsSubscription',
+        'menu.corporateActionInquiry',
+      ],
+      'menu.accountManagement': [
+        'menu.marginDebt',
+        'menu.cashStatement',
+        'menu.securitiesStatement',
+        'menu.orderHistory',
+        'menu.matchedOrdersSummary',
+        'menu.realizedProfitLoss',
+      ],
+      'menu.utilities': [
+        'menu.digitalIdentityCertificate',
+        'menu.updateInformationServices',
+        'menu.marginEligibleList',
+        'menu.alertSettings',
+      ],
+      'menu.settings': [
+        'menu.personalInformation',
+        'menu.fontSize',
+        'menu.theme',
+      ],
+      'menu.security': [
+        'menu.changePassword',
+        'menu.biometricSettings',
+      ],
+      'menu.support': [
+        'menu.contact',
+        'menu.tradingHandbook',
+        'menu.address',
+      ],
+    };
+
+    final children = menus[parentLabelKey] ?? [];
+
+    return [
+      for (int i = 0; i < children.length; i++) ...[
+        _buildDivider(18),
+        ListTile(
+          title: Text(children[i].tr()),
+          onTap: () {},
+        ),
+      ],
+    ];
   }
 
   Future<void> _confirmLogout(BuildContext context) async {
@@ -156,8 +229,10 @@ class _MenuTile extends StatelessWidget {
             height: 40,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: AppColors.primaryLight,
-              borderRadius: BorderRadius.circular(10),
+              // color: AppColors.primaryLight,
+              color: Colors.white,
+
+              borderRadius: BorderRadius.circular(20),
             ),
             child: Icon(icon, color: AppColors.primary, size: 22),
           ),
@@ -169,6 +244,70 @@ class _MenuTile extends StatelessWidget {
         ),
         const Divider(height: 1, indent: 72, color: AppColors.divider),
       ],
+    );
+  }
+}
+
+class _MenuExpansionTile extends StatefulWidget {
+  const _MenuExpansionTile({
+    required this.icon,
+    required this.label,
+    required this.children,
+  });
+
+  final IconData icon;
+  final String label;
+  final List<Widget> children;
+
+  @override
+  State<_MenuExpansionTile> createState() => _MenuExpansionTileState();
+}
+
+class _MenuExpansionTileState extends State<_MenuExpansionTile> {
+  bool _isExpanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return ExpansionTile(
+      shape: const Border(),
+      collapsedShape: const Border(),
+      tilePadding: const EdgeInsets.symmetric(horizontal: 16),
+      childrenPadding: const EdgeInsets.only(left: 54),
+      onExpansionChanged: (expanded) {
+        setState(() {
+          _isExpanded = expanded;
+        });
+      },
+      leading: Container(
+        width: 40,
+        height: 40,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: AppColors.primaryLight,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Icon(
+          widget.icon,
+          color: AppColors.primary,
+        ),
+      ),
+      title: Text(
+        widget.label,
+        style: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 15,
+        ),
+      ),
+      trailing: AnimatedRotation(
+        turns: _isExpanded ? 0.25 : 0.0, // 90°
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeInOut,
+        child: const Icon(
+          Icons.chevron_right,
+          color: AppColors.textSecondary,
+        ),
+      ),
+      children: widget.children,
     );
   }
 }
