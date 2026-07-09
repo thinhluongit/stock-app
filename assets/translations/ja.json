@@ -110,6 +110,7 @@
     "title": "アカウント作成",
     "slogan": "投資の旅を始めましょう",
     "fullName": "氏名",
+    "phoneNumber": "電話番号",
     "confirmPassword": "パスワード（確認）",
     "agreeTerms": "利用規約およびプライバシーポリシーに同意します",
     "signUp": "登録",

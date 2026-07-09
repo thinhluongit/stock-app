@@ -1,5 +1,5 @@
 import '../models/models.dart';
-import '../models/user.dart';
+import '../models/app_user.dart';
 import '../models/wallet.dart';
 
 /// Static mock data used across the app (no API).
@@ -10,7 +10,7 @@ class MockData {
   static const String accountCode = '038C090201';
 
   /// Mock signed-in user with several wallets (sub-accounts).
-  static const User currentUser = User(
+  static const AppUser currentUser = AppUser(
     id: 'u001',
     username: accountCode,
     fullName: 'Lương Trường Thịnh',

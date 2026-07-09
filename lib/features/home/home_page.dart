@@ -1,7 +1,9 @@
 import 'package:custom_bottom_nav/custom_bottom_nav.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:stock_app/data/models/user.dart';
+import 'package:provider/provider.dart';
+import 'package:stock_app/data/models/app_user.dart';
+import 'package:stock_app/providers/user_provider.dart';
 
 import '../../core/localization/language_switcher.dart';
 import '../../core/theme/app_colors.dart';
@@ -15,8 +17,7 @@ import 'tabs/trading_tab.dart';
 
 /// Main screen: shared AppBar + 5 fixed large tabs via a custom bottom nav.
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, this.user, required this.isLoggedIn});
-  final User? user;
+  const HomePage({super.key, required this.isLoggedIn});
   final bool isLoggedIn;
 
   @override
@@ -44,19 +45,21 @@ class _HomePageState extends State<HomePage> {
       NotificationsTab(),
     ];
 
+    final user = context.read<UserProvider>().currentUser;
+
     return Scaffold(
       // AppBar chung cho cả 5 tab lớn.
       appBar: AppBar(
         titleSpacing: 16,
-        title: (widget.user != null && widget.isLoggedIn == true)
-            ? _buildUserAppbarInfo(widget.user!)
+        title: (user != null && widget.isLoggedIn == true)
+            ? _buildUserAppbarInfo(user)
             : Text(
                 'appName'.tr(),
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
         actions: [
           const LanguageSwitcher(),
-          (widget.user != null && widget.isLoggedIn == true)
+          (user != null && widget.isLoggedIn == true)
               ? IconButton(
                   icon: const Icon(
                     Icons.menu,
@@ -65,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (_) =>
-                          MenuPage(username: widget.user?.username ?? ''),
+                          MenuPage(username: user.username),
                     ),
                   ),
                 )
@@ -101,7 +104,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildUserAppbarInfo(User user) {
+  Widget _buildUserAppbarInfo(AppUser user) {
     final defaultWallet = MockData.currentUser.wallets.firstWhere(
       (w) => w.isDefault,
       orElse: () => MockData.currentUser.wallets.first,

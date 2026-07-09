@@ -1,10 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:stock_app/features/home/home_page.dart';
 import 'package:stock_app/providers/auth_provider.dart';
+import 'package:stock_app/providers/user_provider.dart';
+import 'package:stock_app/services/auth_service.dart';
 
 import '../../core/theme/app_colors.dart';
-import 'login_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -17,9 +19,10 @@ class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
 
   final _fullNameCtrl = TextEditingController();
-  final _userCtrl = TextEditingController(); // Số điện thoại / Mã tài khoản
+  final _phoneCtrl = TextEditingController(); // Số điện thoại / Mã tài khoản
   final _passCtrl = TextEditingController();
   final _confirmPassCtrl = TextEditingController();
+  final authService = AuthService();
 
   bool _obscurePass = true;
   bool _obscureConfirm = true;
@@ -29,7 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   void dispose() {
     _fullNameCtrl.dispose();
-    _userCtrl.dispose();
+    _phoneCtrl.dispose();
     _passCtrl.dispose();
     _confirmPassCtrl.dispose();
     super.dispose();
@@ -56,9 +59,9 @@ class _RegisterPageState extends State<RegisterPage> {
     bool success = false;
     try {
       // TODO: Đổi tên/tham số cho khớp với hàm thật trong AuthProvider
-      // Ví dụ hiện tại giả định: register({username, password, fullName}) -> bool
+      // Ví dụ hiện tại giả định: register({phone, password, fullName}) -> bool
       success = await context.read<AuthProvider>().register(
-            username: _userCtrl.text.trim(),
+            username: _phoneCtrl.text.trim(),
             password: _passCtrl.text,
             fullName: _fullNameCtrl.text.trim(),
           );
@@ -76,8 +79,19 @@ class _RegisterPageState extends State<RegisterPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('register.success'.tr())),
       );
+
+      final firebaseUser = authService.currentUser;
+
+      if (firebaseUser != null) {
+        context.read<UserProvider>().setUser(firebaseUser);
+      }
+
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const LoginPage()),
+        MaterialPageRoute(
+          builder: (_) => HomePage(
+            isLoggedIn: true,
+          ),
+        ),
       );
     } else if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -120,10 +134,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
-                            colors: [
-                              AppColors.primary,
-                              AppColors.primaryDark
-                            ],
+                            colors: [AppColors.primary, AppColors.primaryDark],
                           ),
                           borderRadius: BorderRadius.circular(22),
                         ),
@@ -173,10 +184,10 @@ class _RegisterPageState extends State<RegisterPage> {
 
                       // Số điện thoại / Mã tài khoản
                       TextFormField(
-                        controller: _userCtrl,
+                        controller: _phoneCtrl,
                         keyboardType: TextInputType.phone,
                         decoration: InputDecoration(
-                          labelText: 'login.account'.tr(),
+                          labelText: 'register.phoneNumber'.tr(),
                           prefixIcon: const Icon(Icons.person_outline),
                         ),
                         validator: (value) {
@@ -300,8 +311,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             style: TextButton.styleFrom(
                               padding: EdgeInsets.zero,
                               minimumSize: const Size(0, 0),
-                              tapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                             ),
                             child: Text(
                               'register.backToLogin'.tr(),

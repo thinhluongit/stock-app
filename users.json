@@ -1,0 +1,23 @@
+{"users": [
+{
+  "localId": "Vo7LE5fyW4f4OANGq6fw5k7G9d32",
+  "email": "0377355633@stockapp.local",
+  "emailVerified": false,
+  "passwordHash": "xfEzhqdrxPkYn2haQTg215khiCryYdf7oU9fz6pO/Hlize6qm2DfDHeK/7yUm6uqOaVecGk1o6lu6K+Tulidww==",
+  "salt": "Mjzy14g17TQHKw==",
+  "displayName": "Thinh",
+  "lastSignedInAt": "1783564121045",
+  "createdAt": "1783562847182",
+  "providerUserInfo": []
+},
+{
+  "localId": "rrfTdGgh6KTPkVSCkUOmjneaPMf2",
+  "email": "0984343434@stockapp.local",
+  "emailVerified": false,
+  "passwordHash": "k0E+IAki4J1U/63WsEAsJr9bc8v6HtWw8PGiMbUt7yq3OHxpKwpEXDGSDptURtG1s/9xOZyzOmtTSEyLW6jRZw==",
+  "salt": "zvByUP132vhfzA==",
+  "displayName": "Thinh Test",
+  "lastSignedInAt": "1783507046824",
+  "createdAt": "1783507046824",
+  "providerUserInfo": []
+}]}

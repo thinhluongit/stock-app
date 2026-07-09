@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:stock_app/core/theme/app_colors.dart';
 import 'package:stock_app/features/home/widgets/slanted_clipper.dart';
 import 'package:stock_app/features/login/login_page.dart';
+import 'package:stock_app/features/login/register_page.dart';
 import 'package:stock_app/providers/auth_provider.dart';
 
 class Overview extends StatefulWidget {
@@ -202,19 +203,16 @@ class _OverviewState extends State<Overview> {
                 color: Colors.transparent,
                 child: InkWell(
                   onTap: () {
-                    Navigator.of(context).pushAndRemoveUntil(
-                        PageRouteBuilder(
-                          transitionDuration:
-                              const Duration(milliseconds: 500),
-                          pageBuilder: (_, animation, __) => const LoginPage(),
-                          transitionsBuilder: (_, animation, __, child) {
-                            return FadeTransition(
-                              opacity: animation,
-                              child: child,
-                            );
-                          },
-                        ),
-                        (route) => false);
+                    Navigator.of(context).push(PageRouteBuilder(
+                      transitionDuration: const Duration(milliseconds: 500),
+                      pageBuilder: (_, animation, __) => const LoginPage(),
+                      transitionsBuilder: (_, animation, __, child) {
+                        return FadeTransition(
+                          opacity: animation,
+                          child: child,
+                        );
+                      },
+                    ));
                   },
                   child: ClipPath(
                     clipper: SlantedClipper(isLeft: true),
@@ -239,21 +237,37 @@ class _OverviewState extends State<Overview> {
               ),
             ),
             Expanded(
-              child: ClipPath(
-                clipper: SlantedClipper(isLeft: false),
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  decoration: BoxDecoration(
-                      color: AppColors.reference,
-                      borderRadius: BorderRadius.circular(4)),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'menu.register'.tr(),
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+              child: Material(
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(PageRouteBuilder(
+                      transitionDuration: const Duration(milliseconds: 500),
+                      pageBuilder: (_, animation, __) => const RegisterPage(),
+                      transitionsBuilder: (_, animation, __, child) {
+                        return FadeTransition(
+                          opacity: animation,
+                          child: child,
+                        );
+                      },
+                    ));
+                  },
+                  child: ClipPath(
+                    clipper: SlantedClipper(isLeft: false),
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      decoration: BoxDecoration(
+                          color: AppColors.reference,
+                          borderRadius: BorderRadius.circular(4)),
+                      alignment: Alignment.center,
+                      child: Text(
+                        'menu.register'.tr(),
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                 ),

@@ -54,12 +54,24 @@ Color changeColor(num change) {
 
 extension DoubleExtension on double {
   String toDisplayString() {
-    return this % 1 == 0
-        ? toInt().toString()
-        : toString();
+    return this % 1 == 0 ? toInt().toString() : toString();
   }
 
-    double roundTo1Decimal() {
+  double roundTo1Decimal() {
     return double.parse(toStringAsFixed(1));
   }
+}
+
+String generateUsername(String email) {
+  if (email.isEmpty) return '';
+  
+  final localPart = email.split('@').first;
+
+  if (localPart.length < 6) {
+    throw ArgumentError('Email không hợp lệ');
+  }
+
+  final last6Digits = localPart.substring(localPart.length - 6);
+
+  return '038C$last6Digits';
 }

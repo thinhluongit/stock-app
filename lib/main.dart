@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:stock_app/features/login/login_page.dart';
 import 'package:stock_app/features/login/splash_page.dart';
 import 'package:stock_app/providers/auth_provider.dart';
+import 'package:stock_app/providers/user_provider.dart';
 
 import 'core/localization/app_locales.dart';
 import 'core/theme/app_theme.dart';
@@ -28,6 +29,7 @@ Future<void> main() async {
               return AuthProvider();
             },
           ),
+          ChangeNotifierProvider<UserProvider>(create: (_) => UserProvider()),
         ],
         child: const StockApp(),
       ),

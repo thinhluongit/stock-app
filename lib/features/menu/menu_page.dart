@@ -115,7 +115,7 @@ class _AccountHeader extends StatelessWidget {
                     style: const TextStyle(
                         fontWeight: FontWeight.w700, fontSize: 17)),
                 const SizedBox(height: 4),
-                Text('${'menu.userCode'.tr()}: ${MockData.accountCode}',
+                Text('${'menu.userCode'.tr()}: $username',
                     style: const TextStyle(
                         color: AppColors.textSecondary, fontSize: 13)),
               ],

@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stock_app/core/theme/app_colors.dart';
-import 'package:stock_app/data/mock/mock_data.dart';
 import 'package:stock_app/providers/auth_provider.dart';
 
 import '../home/home_page.dart';
@@ -10,8 +9,8 @@ import '../home/home_page.dart';
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
-  @override
-  State<SplashPage> createState() => _SplashPageState();
+    @override
+    State<SplashPage> createState() => _SplashPageState();
 }
 
 class _SplashPageState extends State<SplashPage> {
@@ -22,16 +21,15 @@ class _SplashPageState extends State<SplashPage> {
     final auth = context.read<AuthProvider>();
 
     Future.microtask(() async {
-      await auth.autoLogin();
+      // await auth.autoLogin();
 
       if (!mounted) return;
 
       if (auth.isLoggedIn) {
         Navigator.of(context).pushReplacement(
           PageRouteBuilder(
-            transitionDuration: const Duration(milliseconds: 1000),
+            transitionDuration: const Duration(milliseconds: 2000),
             pageBuilder: (_, animation, __) => HomePage(
-              user: MockData.currentUser,
               isLoggedIn: true,
             ),
             transitionsBuilder: (_, animation, __, child) {
@@ -45,9 +43,8 @@ class _SplashPageState extends State<SplashPage> {
       } else {
         Navigator.of(context).pushReplacement(
           PageRouteBuilder(
-            transitionDuration: const Duration(milliseconds: 1000),
+            transitionDuration: const Duration(milliseconds: 2000),
             pageBuilder: (_, animation, __) => HomePage(
-              user: null,
               isLoggedIn: false,
             ),
             transitionsBuilder: (_, animation, __, child) {

@@ -2,13 +2,13 @@ import 'package:json_annotation/json_annotation.dart';
 
 import 'wallet.dart';
 
-part 'user.g.dart';
+part 'app_user.g.dart';
 
 /// An app user. A user can own **many** [Wallet]s (one-to-many).
 @JsonSerializable(explicitToJson: true)
-class User {
-  const User({
-    required this.id,
+class AppUser {
+  const AppUser({
+    this.id,
     required this.username,
     required this.fullName,
     this.email,
@@ -16,7 +16,7 @@ class User {
     this.wallets = const [],
   });
 
-  final String id;
+  final String? id;
 
   /// Login id / customer code, e.g. "038C090201".
   final String username;
@@ -38,11 +38,11 @@ class User {
   double get totalAsset =>
       wallets.fold(0, (sum, wallet) => sum + wallet.totalAsset);
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory AppUser.fromJson(Map<String, dynamic> json) => _$AppUserFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  Map<String, dynamic> toJson() => _$AppUserToJson(this);
 
-  User copyWith({
+  AppUser copyWith({
     String? id,
     String? username,
     String? fullName,
@@ -50,7 +50,7 @@ class User {
     String? phone,
     List<Wallet>? wallets,
   }) {
-    return User(
+    return AppUser(
       id: id ?? this.id,
       username: username ?? this.username,
       fullName: fullName ?? this.fullName,

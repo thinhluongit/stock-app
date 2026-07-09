@@ -109,6 +109,7 @@
   "register": {
     "title": "创建账户",
     "slogan": "开启您的投资之旅",
+    "phoneNumber": "手机号码",
     "fullName": "姓名",
     "confirmPassword": "确认密码",
     "agreeTerms": "我同意《使用条款》和《隐私政策》",

@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stock_app/data/mock/mock_data.dart';
 import 'package:stock_app/features/login/register_page.dart';
 import 'package:stock_app/providers/auth_provider.dart';
 
@@ -17,8 +16,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _userCtrl = TextEditingController(text: '038C090201');
-  final _passCtrl = TextEditingController(text: '123456');
+  // final _userCtrl = TextEditingController(text: '038C090201');
+  final _userCtrl = TextEditingController();
+  // final _passCtrl = TextEditingController(text: '123456');
+  final _passCtrl = TextEditingController();
   bool _obscure = true;
   bool _loading = false;
 
@@ -64,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (_) => HomePage(
-            user: MockData.currentUser,
+            // user: MockData.currentUser,
             isLoggedIn: true,
           ),
         ),
