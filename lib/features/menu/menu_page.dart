@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:stock_app/data/mock/mock_data.dart';
 
 import '../../core/localization/language_switcher.dart';
 import '../../core/theme/app_colors.dart';
@@ -37,9 +38,9 @@ class MenuPage extends StatelessWidget {
           elevation: 8,
           shadowColor: Colors.black.withOpacity(0.15),
           surfaceTintColor: Colors.transparent,
+          centerTitle: true,
         ),
         body: ListView(
-          
           children: [
             _AccountHeader(
               username: username,
@@ -52,7 +53,7 @@ class MenuPage extends StatelessWidget {
                 child: _MenuExpansionTile(
                   icon: it.icon,
                   label: it.labelKey.tr(),
-                  children: _buildMenuChildren(it.labelKey),
+                  children: _buildMenuChildren(context, it.labelKey),
                 ),
               ),
               _buildDivider(72),
@@ -69,56 +70,24 @@ class MenuPage extends StatelessWidget {
         ));
   }
 
-  List<Widget> _buildMenuChildren(String parentLabelKey) {
-    final Map<String, List<String>> menus = {
-      'menu.cashTransaction': [
-        'menu.internalTransfer',
-        'menu.externalTransfer',
-        'menu.advanceOnSaleProceeds',
-      ],
-      'menu.securitiesTransaction': [
-        'menu.securitiesTransfer',
-        'menu.rightsSubscription',
-        'menu.corporateActionInquiry',
-      ],
-      'menu.accountManagement': [
-        'menu.marginDebt',
-        'menu.cashStatement',
-        'menu.securitiesStatement',
-        'menu.orderHistory',
-        'menu.matchedOrdersSummary',
-        'menu.realizedProfitLoss',
-      ],
-      'menu.utilities': [
-        'menu.digitalIdentityCertificate',
-        'menu.updateInformationServices',
-        'menu.marginEligibleList',
-        'menu.alertSettings',
-      ],
-      'menu.settings': [
-        'menu.personalInformation',
-        'menu.fontSize',
-        'menu.theme',
-      ],
-      'menu.security': [
-        'menu.changePassword',
-        'menu.biometricSettings',
-      ],
-      'menu.support': [
-        'menu.contact',
-        'menu.tradingHandbook',
-        'menu.address',
-      ],
-    };
-
-    final children = menus[parentLabelKey] ?? [];
+  List<Widget> _buildMenuChildren(
+    BuildContext context,
+    String parentLabelKey,
+  ) {
+    final children = MockData.menus[parentLabelKey] ?? [];
 
     return [
       for (int i = 0; i < children.length; i++) ...[
-        _buildDivider(18),
+        if (i != 0) _buildDivider(18),
         ListTile(
-          title: Text(children[i].tr()),
-          onTap: () {},
+          title: Text(children[i].labelKey.tr()),
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => children[i].page,
+              ),
+            );
+          },
         ),
       ],
     ];
