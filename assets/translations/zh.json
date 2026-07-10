@@ -36,7 +36,9 @@
     "noResult": "未找到结果",
     "highestVolume": "成交量最高", "topGainers": "涨幅最大", "topLosers": "跌幅最大",
     "viewMore": "查看更多",
-    "netAssetValue": "純資産額（NAV）"
+    "netAssetValue": "純資産額（NAV）",
+    "portfolio": "投资组合", "onlineOrderConfirmation": "在线委托确认", "customization": "个性化设置",
+    "buyOrderPlacedSuccess": "买入委托提交成功。", "sellOrderPlacedSuccess": "卖出委托提交成功。"
   },
   "market": {
     "overview": "概览",

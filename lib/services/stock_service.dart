@@ -35,4 +35,10 @@ class StockService {
       yield List.from(_stocks);
     }
   }
+
+  Future<StockQuote> getQuote(String symbol) {
+    return Future.value(
+      MockData.quotes.firstWhere((q) => q.symbol == symbol),
+    );
+  }
 }

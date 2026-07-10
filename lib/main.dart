@@ -10,6 +10,7 @@ import 'package:stock_app/features/login/splash_page.dart';
 import 'package:stock_app/firebase_options.dart';
 import 'package:stock_app/providers/auth_provider.dart';
 import 'package:stock_app/providers/user_provider.dart';
+import 'package:stock_app/services/notification_service.dart';
 
 import 'core/localization/app_locales.dart';
 import 'core/theme/app_theme.dart';
@@ -32,6 +33,8 @@ Future<void> main() async {
     return true;
   };
 
+  await NotificationService.instance.init();
+  
   runApp(
     EasyLocalization(
       supportedLocales: AppLocales.supported,

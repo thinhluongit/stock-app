@@ -86,13 +86,13 @@ class _RegisterPageState extends State<RegisterPage> {
         context.read<UserProvider>().setUser(firebaseUser);
       }
 
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (_) => HomePage(
-            isLoggedIn: true,
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (_) => HomePage(
+              isLoggedIn: true,
+            ),
           ),
-        ),
-      );
+          (route) => false);
     } else if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('register.failed'.tr())),

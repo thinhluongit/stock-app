@@ -38,7 +38,9 @@
     "topGainers": "Top Gainers", 
     "topLosers": "Top Losers",
     "viewMore": "View More",
-    "netAssetValue": "Net Asset Value (NAV)"
+    "netAssetValue": "Net Asset Value (NAV)",
+    "portfolio": "Portfolio", "onlineOrderConfirmation": "Online Order Confirmation", "customization": "Customization"
+    
   },
   "market": {
     "overview": "Overview",
@@ -78,7 +80,8 @@
     "tradeHistory": "Trade history",
     "inputStockHint": "Enter Stock Code",
     "sellableQuantity": "Sellable Quantity",
-    "buyingPower": "Buying Power"
+    "buyingPower": "Buying Power",
+    "buyOrderPlacedSuccess": "Buy order placed successfully.", "sellOrderPlacedSuccess": "Sell order placed successfully."
   },
   "search": {
     "hint": "Enter symbol or company name..."

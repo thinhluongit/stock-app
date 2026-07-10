@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:stock_app/data/mock/mock_data.dart';
+import 'package:stock_app/providers/auth_provider.dart';
 
 import '../../core/localization/language_switcher.dart';
 import '../../core/theme/app_colors.dart';
@@ -104,6 +106,8 @@ class MenuPage extends StatelessWidget {
   }
 
   Future<void> _confirmLogout(BuildContext context) async {
+    final authProvider = context.read<AuthProvider>();
+
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (dialogCtx) => AlertDialog(
@@ -115,7 +119,10 @@ class MenuPage extends StatelessWidget {
             child: Text('menu.cancel'.tr()),
           ),
           TextButton(
-            onPressed: () => Navigator.pop(dialogCtx, true),
+            onPressed: () async {
+              authProvider.logout();
+              Navigator.pop(dialogCtx, true);
+            },
             child: Text('menu.logout'.tr(),
                 style: const TextStyle(color: AppColors.down)),
           ),

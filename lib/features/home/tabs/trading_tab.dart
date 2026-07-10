@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:stock_app/services/notification_service.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/formatters.dart';
@@ -130,7 +131,9 @@ class _PlaceOrderState extends State<_PlaceOrder> {
           ],
         ),
         const SizedBox(height: 20),
-        _isNormalOrder ? _buildNormalOrderTab(_excessPrice) : _buildConditionalOrderTab(),
+        _isNormalOrder
+            ? _buildNormalOrderTab(_excessPrice)
+            : _buildConditionalOrderTab(),
       ],
     );
   }
@@ -197,7 +200,7 @@ class _PlaceOrderState extends State<_PlaceOrder> {
                       });
                     }),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     showDialog(
                       context: context,
                       builder: (_) => AlertDialog(
@@ -227,6 +230,12 @@ class _PlaceOrderState extends State<_PlaceOrder> {
                           ),
                         ),
                       ),
+                    );
+                    await NotificationService.instance.show(
+                      title: 'Stock App',
+                      body: _isBuySelected
+                          ? 'trading.buyOrderPlacedSuccess'.tr()
+                          : 'trading.sellOrderPlacedSuccess'.tr(),
                     );
                   },
                   child: Container(
@@ -291,7 +300,9 @@ class _PlaceOrderState extends State<_PlaceOrder> {
           Text(
             price != null ? '$price' : '-',
             style: TextStyle(
-              color: price != null ? (isSellableExcess ? AppColors.up : AppColors.down) : Colors.grey[200],
+              color: price != null
+                  ? (isSellableExcess ? AppColors.up : AppColors.down)
+                  : Colors.grey[200],
               fontWeight: FontWeight.w700,
               fontSize: 14,
             ),
@@ -705,10 +716,10 @@ class _SearchResultsState extends State<_SearchResults> {
           else
             Container(
               decoration: BoxDecoration(
-                // border: Border.all(color: Colors.grey.shade200),
-                // borderRadius: BorderRadius.circular(8),
-                // color:  Colors.grey.shade200
-              ),
+                  // border: Border.all(color: Colors.grey.shade200),
+                  // borderRadius: BorderRadius.circular(8),
+                  // color:  Colors.grey.shade200
+                  ),
               child: ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),

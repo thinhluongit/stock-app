@@ -164,7 +164,7 @@ class _OverviewState extends State<Overview> {
     return Container(
       padding: EdgeInsets.all(16),
       child: Column(children: [
-        isLoggedIn ? _buidNetWorthInfo() : _buildAutherSwitcher(),
+        isLoggedIn == true ? _buidNetWorthInfo() : _buildAutherSwitcher(),
         _buildOverviewMenu(),
         const IndexChart(),
       ]),
@@ -281,36 +281,61 @@ class _OverviewState extends State<Overview> {
 
   Widget _buildOverviewMenu() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 12),
-      width: double.infinity,
+      margin: const EdgeInsets.symmetric(vertical: 12),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _buildOverviewButton(Icons.security, 'SmartOTP'),
-          _buildOverviewButton(Icons.category, 'Danh mục'),
-          _buildOverviewButton(Icons.contact_emergency, 'Xác nhận lệnh Online'),
-          _buildOverviewButton(Icons.add_circle, 'Tùy chỉnh'),
+          Expanded(
+            child: _buildOverviewButton(Icons.security, 'SmartOTP'),
+          ),
+          Expanded(
+            child: _buildOverviewButton(Icons.category, 'common.portfolio'.tr()),
+          ),
+          Expanded(
+            child: _buildOverviewButton(
+              Icons.contact_emergency,
+              'common.onlineOrderConfirmation'.tr(),
+            ),
+          ),
+          Expanded(
+            child: _buildOverviewButton(Icons.add_circle, 'common.customization'.tr()),
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildOverviewButton(IconData icon, String feature) {
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.all(8),
-          margin: EdgeInsets.all(2),
-          decoration: BoxDecoration(
-              color: AppColors.primaryBright,
-              borderRadius: BorderRadius.circular(8)),
-          child: Icon(icon),
+  Widget _buildOverviewButton(IconData icon, String label) {
+    return InkWell(
+      onTap: () {},
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: AppColors.primaryBright,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Icon(icon),
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              height: 40, // đủ cho 2 dòng
+              child: Text(
+                label,
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
         ),
-        Text(
-          feature,
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-        )
-      ],
+      ),
     );
   }
 }

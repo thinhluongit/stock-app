@@ -78,6 +78,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: IndexedStack(index: _index, children: pages),
       bottomNavigationBar: CustomBottomNavBar(
+        showTopIndicator: true,
         currentIndex: _index,
         onTap: (i) => setState(() => _index = i),
         selectedColor: AppColors.primary,

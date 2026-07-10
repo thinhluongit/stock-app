@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
           (route) => false);
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -253,56 +253,67 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildFooterButton(IconData icon, String feature) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SizedBox(
-          width: 40,
-          height: 40,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              // Bệ đỡ hình elip
-              Positioned(
-                bottom: 3,
-                child: Container(
-                  width: 32,
-                  height: 6,
-                  decoration: BoxDecoration(
-                    color: Colors.blue.withOpacity(0.15),
-                    borderRadius: BorderRadius.circular(50),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.blue.withOpacity(0.15),
-                        blurRadius: 4,
-                        spreadRadius: 1,
-                      ),
-                    ],
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (_) => HomePage(
+                isLoggedIn: false,
+              ),
+            ),
+            (route) => false);
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: 40,
+            height: 40,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                // Bệ đỡ hình elip
+                Positioned(
+                  bottom: 3,
+                  child: Container(
+                    width: 32,
+                    height: 6,
+                    decoration: BoxDecoration(
+                      color: Colors.blue.withOpacity(0.15),
+                      borderRadius: BorderRadius.circular(50),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.blue.withOpacity(0.15),
+                          blurRadius: 4,
+                          spreadRadius: 1,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
 
-              // Icon
-              Positioned(
-                bottom: 7,
-                child: Icon(
-                  icon,
-                  size: 26,
-                  color: AppColors.primary,
+                // Icon
+                Positioned(
+                  bottom: 7,
+                  child: Icon(
+                    icon,
+                    size: 26,
+                    color: AppColors.primary,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        Text(
-          feature,
-          style: const TextStyle(
-            fontSize: 13,
-            fontWeight: FontWeight.w500,
-            color: AppColors.textPrimary,
+          Text(
+            feature,
+            style: const TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w500,
+              color: AppColors.textPrimary,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

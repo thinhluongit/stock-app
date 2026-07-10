@@ -36,7 +36,8 @@
     "noResult": "Không tìm thấy kết quả",
     "viewMore": "Xem thêm",
     "highestVolume": "Khối lượng lớn nhất", "topGainers": "Tăng mạnh nhất", "topLosers": "Giảm mạnh nhất",
-    "netAssetValue": "Tài sản ròng (NAV)"
+    "netAssetValue": "Tài sản ròng (NAV)",
+    "portfolio": "Danh mục", "onlineOrderConfirmation": "Xác nhận lệnh Online", "customization": "Tùy chỉnh"
   },
   "market": {
     "overview": "Tổng quan",
@@ -76,7 +77,8 @@
     "tradeHistory": "Lịch sử giao dịch",
     "inputStockHint": "Nhập mã chứng khoán",
     "sellableQuantity": "Dư bán",
-    "buyingPower": "Dư mua"
+    "buyingPower": "Dư mua",
+    "buyOrderPlacedSuccess": "Đặt lệnh mua thành công.", "sellOrderPlacedSuccess": "Đặt lệnh bán thành công."
 
   },
   "search": {

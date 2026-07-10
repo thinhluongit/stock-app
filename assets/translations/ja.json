@@ -36,7 +36,9 @@
     "noResult": "結果が見つかりません",
     "highestVolume": "出来高上位", "topGainers": "値上がり率上位", "topLosers": "値下がり率上位",
     "viewMore": "もっと見る",
-    "netAssetValue": "净资产值（NAV）"
+    "netAssetValue": "净资产值（NAV）",
+    "portfolio": "ポートフォリオ", "onlineOrderConfirmation": "オンライン注文確認", "customization": "カスタマイズ",
+    "buyOrderPlacedSuccess": "買い注文が正常に送信されました。", "sellOrderPlacedSuccess": "売り注文が正常に送信されました。"
   },
   "market": {
     "overview": "概要",
