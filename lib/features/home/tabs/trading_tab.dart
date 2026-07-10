@@ -349,7 +349,7 @@ class ValueStepper extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            width: 80,
+            width: 72,
             child: Text(
               label,
               style: const TextStyle(
@@ -364,7 +364,7 @@ class ValueStepper extends StatelessWidget {
             onTap: onDecrease,
           ),
           Container(
-            width: 56,
+            width: 48,
             height: 36,
             alignment: Alignment.center,
             decoration: BoxDecoration(

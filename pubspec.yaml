@@ -46,10 +46,10 @@ dependencies:
   flutter_secure_storage: ^9.2.2
   firebase_core: ^4.0.0
   firebase_auth: ^6.0.0
-
+  firebase_crashlytics: ^5.2.4
   # Charts. NOTE: the 20.x line requires Dart <3.0.0 and intl <0.20.0, so it
   # cannot resolve against this project's SDK or easy_localization.
-  syncfusion_flutter_charts: ^34.1.30
+  syncfusion_flutter_charts: ^29.1.38
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:stock_app/data/mock/mock_data.dart';
 
@@ -58,6 +59,15 @@ class MenuPage extends StatelessWidget {
               ),
               _buildDivider(72),
             ],
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  FirebaseCrashlytics.instance.crash();
+                },
+                child: const Text("Test Crash"),
+              ),
+            )
           ],
         ));
   }

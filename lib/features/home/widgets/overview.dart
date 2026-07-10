@@ -140,7 +140,7 @@ class _OverviewState extends State<Overview> {
                 Container(
                   width: double.infinity,
                   constraints: const BoxConstraints(
-                    minHeight: 800, // hoặc theo nội dung
+                    minHeight: 600, // hoặc theo nội dung
                   ),
                   decoration: const BoxDecoration(
                     color: Colors.white,

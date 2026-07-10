@@ -40,7 +40,6 @@ class _IndexChartState extends State<IndexChart> {
 
   MarketIndex get _index => MockData.indexByName(_selected);
 
-  /// Green up, red down, amber unchanged — the app's board semantics.
   Color get _trendColor {
     if (_index.isUp) return AppColors.up;
     if (_index.isDown) return AppColors.down;
@@ -200,7 +199,6 @@ class _IndexChartState extends State<IndexChart> {
                   ),
                 ),
                 const SizedBox(height: 2),
-                // Names the dashed line drawn across the plot.
                 Text(
                   '${'market.reference'.tr()} '
                   '${_valueFormat.format(index.reference)}',
