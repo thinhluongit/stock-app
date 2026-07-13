@@ -329,187 +329,180 @@ class MockData {
     ),
   ];
 
- static final List<NotificationItem> notifications = [
-  NotificationItem(
-    type: NotiType.transaction,
-    title: 'Khớp lệnh thành công',
-    message: 'Lệnh MUA 1,000 VNM giá 70.2 đã khớp toàn bộ.',
-    createdAt: DateTime.now().subtract(const Duration(minutes: 5)),
-    unread: true,
-  ),
-  NotificationItem(
-    type: NotiType.priceAlert,
-    title: 'Cảnh báo giá FPT',
-    message: 'FPT vừa vượt mốc 135.0 (+2.49%).',
-    createdAt: DateTime.now().subtract(const Duration(minutes: 18)),
-    unread: true,
-  ),
-  NotificationItem(
-    type: NotiType.system,
-    title: 'Bảo trì hệ thống',
-    message: 'Hệ thống sẽ bảo trì lúc 23:00 hôm nay.',
-    createdAt: DateTime.now().subtract(const Duration(hours: 1)),
-  ),
-  NotificationItem(
-    type: NotiType.news,
-    title: 'Tin thị trường',
-    message: 'VN-Index tăng phiên thứ 3 liên tiếp, thanh khoản cải thiện.',
-    createdAt: DateTime.now().subtract(const Duration(hours: 2)),
-    unread: true,
-  ),
-  NotificationItem(
-    type: NotiType.transaction,
-    title: 'Lệnh bị hủy',
-    message: 'Lệnh BÁN 1,500 HPG giá 27.5 đã bị hủy.',
-    createdAt: DateTime.now().subtract(const Duration(hours: 3)),
-  ),
-];
+  static final List<NotificationItem> notifications = [
+    NotificationItem(
+      type: NotiType.transaction,
+      title: 'Khớp lệnh thành công',
+      message: 'Lệnh MUA 1,000 VNM giá 70.2 đã khớp toàn bộ.',
+      createdAt: DateTime.now().subtract(const Duration(minutes: 5)),
+      unread: true,
+    ),
+    NotificationItem(
+      type: NotiType.priceAlert,
+      title: 'Cảnh báo giá FPT',
+      message: 'FPT vừa vượt mốc 135.0 (+2.49%).',
+      createdAt: DateTime.now().subtract(const Duration(minutes: 18)),
+      unread: true,
+    ),
+    NotificationItem(
+      type: NotiType.system,
+      title: 'Bảo trì hệ thống',
+      message: 'Hệ thống sẽ bảo trì lúc 23:00 hôm nay.',
+      createdAt: DateTime.now().subtract(const Duration(hours: 1)),
+    ),
+    NotificationItem(
+      type: NotiType.news,
+      title: 'Tin thị trường',
+      message: 'VN-Index tăng phiên thứ 3 liên tiếp, thanh khoản cải thiện.',
+      createdAt: DateTime.now().subtract(const Duration(hours: 2)),
+      unread: true,
+    ),
+    NotificationItem(
+      type: NotiType.transaction,
+      title: 'Lệnh bị hủy',
+      message: 'Lệnh BÁN 1,500 HPG giá 27.5 đã bị hủy.',
+      createdAt: DateTime.now().subtract(const Duration(hours: 3)),
+    ),
+  ];
 
   static int get unreadCount => notifications.where((n) => n.unread).length;
 
   static final Map<String, List<MenuItem>> menus = {
-  'menu.cashTransaction': [
-    MenuItem(
-      labelKey: 'menu.internalTransfer',
-      page: const InternalTransferPage(),
-    ),
-    MenuItem(
-      labelKey: 'menu.externalTransfer',
-      // page: const ExternalTransferPage(),
-      page: const InternalTransferPage(),
-    ),
-    MenuItem(
-      labelKey: 'menu.advanceOnSaleProceeds',
-      page: const InternalTransferPage(),
-      // page: const AdvanceOnSaleProceedsPage(),
-    ),
-  ],
-
-  'menu.securitiesTransaction': [
-    MenuItem(
-      labelKey: 'menu.securitiesTransfer',
-      page: const InternalTransferPage(),
-      // page: const SecuritiesTransferPage(),
-    ),
-    MenuItem(
-      labelKey: 'menu.rightsSubscription',
-      page: const InternalTransferPage(),
-      // page: const RightsSubscriptionPage(),
-    ),
-    MenuItem(
-      labelKey: 'menu.corporateActionInquiry',
-      page: const InternalTransferPage(),
-      // page: const CorporateActionInquiryPage(),
-    ),
-  ],
-
-  'menu.accountManagement': [
-    MenuItem(
-      labelKey: 'menu.marginDebt',
-      page: const InternalTransferPage(),
-      // page: const MarginDebtPage(),
-    ),
-    MenuItem(
-      labelKey: 'menu.cashStatement',
-      page: const InternalTransferPage(),
-      // page: const CashStatementPage(),
-    ),
-    MenuItem(
-      labelKey: 'menu.securitiesStatement',
-      page: const InternalTransferPage(),
-      // page: const SecuritiesStatementPage(),
-    ),
-    MenuItem(
-      labelKey: 'menu.orderHistory',
-      page: const InternalTransferPage(),
-      // page: const OrderHistoryPage(),
-    ),
-    MenuItem(
-      labelKey: 'menu.matchedOrdersSummary',
-      page: const InternalTransferPage(),
-      // page: const MatchedOrdersSummaryPage(),
-    ),
-    MenuItem(
-      labelKey: 'menu.realizedProfitLoss',
-      page: const InternalTransferPage(),
-      // page: const RealizedProfitLossPage(),
-    ),
-  ],
-
-  'menu.utilities': [
-    MenuItem(
-      labelKey: 'menu.digitalIdentityCertificate',
-      page: const InternalTransferPage(),
-      // page: const DigitalIdentityCertificatePage(),
-    ),
-    MenuItem(
-      labelKey: 'menu.updateInformationServices',
-      page: const InternalTransferPage(),
-      // page: const UpdateInformationServicesPage(),
-    ),
-    MenuItem(
-      labelKey: 'menu.marginEligibleList',
-      page: const InternalTransferPage(),
-      // page: const MarginEligibleListPage(),
-    ),
-    MenuItem(
-      labelKey: 'menu.alertSettings',
-      page: const InternalTransferPage(),
-      // page: const AlertSettingsPage(),
-    ),
-  ],
-
-  'menu.settings': [
-    MenuItem(
-      labelKey: 'menu.personalInformation',
-      page: const InternalTransferPage(),
-      // page: const PersonalInformationPage(),
-    ),
-    MenuItem(
-      labelKey: 'menu.fontSize',
-      page: const InternalTransferPage(),
-      // page: const FontSizeSettingPage(),
-    ),
-    MenuItem(
-      labelKey: 'menu.theme',
-      page: const InternalTransferPage(),
-      // page: const ThemeSettingPage(),
-    ),
-  ],
-
-  'menu.security': [
-    MenuItem(
-      labelKey: 'menu.changePassword',
-      page: const InternalTransferPage(),
-      // page: const ChangePasswordPage(),
-    ),
-    MenuItem(
-      labelKey: 'menu.biometricSettings',
-      page: const InternalTransferPage(),
-    //   page: const BiometricSettingsPage(),
-    ),
-  ],
-
-  'menu.support': [
-    MenuItem(
-      labelKey: 'menu.contact',
-      page: const InternalTransferPage(),
-      // page: const ContactPage(),
-      requiresLogin: false,
-    ),
-    MenuItem(
-      labelKey: 'menu.tradingHandbook',
-      page: const InternalTransferPage(),
-      // page: const TradingHandbookPage(),
-      requiresLogin: false,
-    ),
-    MenuItem(
-      labelKey: 'menu.address',
-      page: const InternalTransferPage(),
-      // page: const AddressPage(),
-      requiresLogin: false,
-    ),
-  ],
-};
-
+    'menu.cashTransaction': [
+      MenuItem(
+        labelKey: 'menu.internalTransfer',
+        page: const InternalTransferPage(),
+      ),
+      MenuItem(
+        labelKey: 'menu.externalTransfer',
+        // page: const ExternalTransferPage(),
+        page: const InternalTransferPage(),
+      ),
+      MenuItem(
+        labelKey: 'menu.advanceOnSaleProceeds',
+        page: const InternalTransferPage(),
+        // page: const AdvanceOnSaleProceedsPage(),
+      ),
+    ],
+    'menu.securitiesTransaction': [
+      MenuItem(
+        labelKey: 'menu.securitiesTransfer',
+        page: const InternalTransferPage(),
+        // page: const SecuritiesTransferPage(),
+      ),
+      MenuItem(
+        labelKey: 'menu.rightsSubscription',
+        page: const InternalTransferPage(),
+        // page: const RightsSubscriptionPage(),
+      ),
+      MenuItem(
+        labelKey: 'menu.corporateActionInquiry',
+        page: const InternalTransferPage(),
+        // page: const CorporateActionInquiryPage(),
+      ),
+    ],
+    'menu.accountManagement': [
+      MenuItem(
+        labelKey: 'menu.marginDebt',
+        page: const InternalTransferPage(),
+        // page: const MarginDebtPage(),
+      ),
+      MenuItem(
+        labelKey: 'menu.cashStatement',
+        page: const InternalTransferPage(),
+        // page: const CashStatementPage(),
+      ),
+      MenuItem(
+        labelKey: 'menu.securitiesStatement',
+        page: const InternalTransferPage(),
+        // page: const SecuritiesStatementPage(),
+      ),
+      MenuItem(
+        labelKey: 'menu.orderHistory',
+        page: const InternalTransferPage(),
+        // page: const OrderHistoryPage(),
+      ),
+      MenuItem(
+        labelKey: 'menu.matchedOrdersSummary',
+        page: const InternalTransferPage(),
+        // page: const MatchedOrdersSummaryPage(),
+      ),
+      MenuItem(
+        labelKey: 'menu.realizedProfitLoss',
+        page: const InternalTransferPage(),
+        // page: const RealizedProfitLossPage(),
+      ),
+    ],
+    'menu.utilities': [
+      MenuItem(
+        labelKey: 'menu.digitalIdentityCertificate',
+        page: const InternalTransferPage(),
+        // page: const DigitalIdentityCertificatePage(),
+      ),
+      MenuItem(
+        labelKey: 'menu.updateInformationServices',
+        page: const InternalTransferPage(),
+        // page: const UpdateInformationServicesPage(),
+      ),
+      MenuItem(
+        labelKey: 'menu.marginEligibleList',
+        page: const InternalTransferPage(),
+        // page: const MarginEligibleListPage(),
+      ),
+      MenuItem(
+        labelKey: 'menu.alertSettings',
+        page: const InternalTransferPage(),
+        // page: const AlertSettingsPage(),
+      ),
+    ],
+    'menu.settings': [
+      MenuItem(
+        labelKey: 'menu.personalInformation',
+        page: const InternalTransferPage(),
+        // page: const PersonalInformationPage(),
+      ),
+      MenuItem(
+        labelKey: 'menu.fontSize',
+        page: const InternalTransferPage(),
+        // page: const FontSizeSettingPage(),
+      ),
+      MenuItem(
+        labelKey: 'menu.theme',
+        page: const InternalTransferPage(),
+        // page: const ThemeSettingPage(),
+      ),
+    ],
+    'menu.security': [
+      MenuItem(
+        labelKey: 'menu.changePassword',
+        page: const InternalTransferPage(),
+        // page: const ChangePasswordPage(),
+      ),
+      MenuItem(
+        labelKey: 'menu.biometricSettings',
+        page: const InternalTransferPage(),
+        //   page: const BiometricSettingsPage(),
+      ),
+    ],
+    'menu.support': [
+      MenuItem(
+        labelKey: 'menu.contact',
+        page: const InternalTransferPage(),
+        // page: const ContactPage(),
+        requiresLogin: false,
+      ),
+      MenuItem(
+        labelKey: 'menu.tradingHandbook',
+        page: const InternalTransferPage(),
+        // page: const TradingHandbookPage(),
+        requiresLogin: false,
+      ),
+      MenuItem(
+        labelKey: 'menu.address',
+        page: const InternalTransferPage(),
+        // page: const AddressPage(),
+        requiresLogin: false,
+      ),
+    ],
+  };
 }

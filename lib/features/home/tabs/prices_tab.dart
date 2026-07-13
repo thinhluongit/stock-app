@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:stock_app/services/stock_service.dart';
 
 import '../../../data/mock/mock_data.dart';
@@ -11,10 +12,10 @@ import '../widgets/sub_tab_view.dart';
 class PricesTab extends StatelessWidget {
   PricesTab({super.key});
 
-  final StockService stockService = StockService();
-
   @override
   Widget build(BuildContext context) {
+    final stockService = context.read<StockService>();
+    
     return SubTabView(
       tabs: [
         'VN30',
@@ -66,7 +67,7 @@ class _Board extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<StockQuote>>(
-      stream: stockService.getRealtimeStocks(),
+      stream: stockService.stream,
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const Center(

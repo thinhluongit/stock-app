@@ -13,6 +13,8 @@ import 'package:stock_app/providers/noti_provider.dart';
 import 'package:stock_app/providers/trading_provider.dart';
 import 'package:stock_app/providers/user_provider.dart';
 import 'package:stock_app/services/notification_service.dart';
+import 'package:stock_app/services/socket_service.dart';
+import 'package:stock_app/services/stock_service.dart';
 
 import 'core/localization/app_locales.dart';
 import 'core/theme/app_theme.dart';
@@ -36,7 +38,7 @@ Future<void> main() async {
   };
 
   await NotificationService.instance.init();
-  
+
   runApp(
     EasyLocalization(
       supportedLocales: AppLocales.supported,
@@ -45,6 +47,14 @@ Future<void> main() async {
       startLocale: AppLocales.fallback,
       child: MultiProvider(
         providers: [
+          Provider<SocketService>(
+            lazy: false,
+            create: (_) {
+              final service = SocketService();
+              service.connect();
+              return service;
+            },
+          ),
           ChangeNotifierProvider<AuthProvider>(
             create: (_) {
               debugPrint(">>>> AuthProvider CREATED");
@@ -58,6 +68,11 @@ Future<void> main() async {
           ChangeNotifierProvider<NotificationProvider>(
             create: (_) => NotificationProvider(),
           ),
+          Provider<StockService>(
+            create: (context) => StockService(
+              context.read<SocketService>(),
+            ),
+          )
         ],
         child: const StockApp(),
       ),

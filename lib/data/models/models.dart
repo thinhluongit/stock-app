@@ -53,8 +53,34 @@ class StockQuote {
   final double volume;
   final String exchange; // HOSE / HNX / UPCOM
 
-  double get ceiling => (reference * 1.07);
-  double get floor => (reference * 0.93);
+  double get ceiling => reference * 1.07;
+  double get floor => reference * 0.93;
+
+  factory StockQuote.fromJson(Map<String, dynamic> json) {
+    return StockQuote(
+      symbol: json['symbol'] as String,
+      company: json['company'] as String,
+      reference: (json['reference'] as num).toDouble(),
+      price: (json['price'] as num).toDouble(),
+      change: (json['change'] as num).toDouble(),
+      percent: (json['percent'] as num).toDouble(),
+      volume: (json['volume'] as num).toDouble(),
+      exchange: json['exchange'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'symbol': symbol,
+      'company': company,
+      'reference': reference,
+      'price': price,
+      'change': change,
+      'percent': percent,
+      'volume': volume,
+      'exchange': exchange,
+    };
+  }
 
   StockQuote copyWith({
     String? symbol,
