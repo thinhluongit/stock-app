@@ -8,7 +8,8 @@
     "signIn": "Đăng nhập",
     "noAccount": "Chưa có tài khoản? ",
     "openAccount": "Mở tài khoản",
-    "validateEmpty": "Vui lòng nhập tài khoản và mật khẩu"
+    "validateEmpty": "Vui lòng nhập tài khoản và mật khẩu",
+    "validateInvalid": "Sai thông tin đăng nhập. Vui lòng thử lại."
   },
   "nav": {
     "market": "Thị Trường",

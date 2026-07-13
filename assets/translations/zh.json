@@ -8,7 +8,8 @@
     "signIn": "登录",
     "noAccount": "还没有账号？ ",
     "openAccount": "开户",
-    "validateEmpty": "请输入账号和密码"
+    "validateEmpty": "请输入账号和密码",
+    "validateInvalid": "登录信息错误，请重试。"
   },
   "nav": {
     "market": "行情",

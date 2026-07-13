@@ -78,6 +78,14 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           (route) => false);
+    } else {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(
+        SnackBar(
+          content: Text('login.validateEmpty'.tr()),
+        ),
+      );
     }
   }
 

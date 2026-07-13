@@ -8,7 +8,8 @@
     "signIn": "Sign in",
     "noAccount": "Don't have an account? ",
     "openAccount": "Register account",
-    "validateEmpty": "Please enter username and password"
+    "validateEmpty": "Please enter username and password",
+    "validateInvalid": "Invalid login credentials. Please try again."
   },
   "nav": {
     "market": "Market",

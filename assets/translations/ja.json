@@ -8,7 +8,8 @@
     "signIn": "ログイン",
     "noAccount": "アカウントをお持ちでないですか？ ",
     "openAccount": "口座開設",
-    "validateEmpty": "アカウントとパスワードを入力してください"
+    "validateEmpty": "アカウントとパスワードを入力してください",
+    "validateInvalid": "ログイン情報が正しくありません。もう一度お試しください。"
   },
   "nav": {
     "market": "マーケット",
