@@ -127,6 +127,16 @@
   "tradingHandbook": "Sổ tay giao dịch",
   "address": "Địa chỉ"
   },
+  "internalTransfer": {
+    "transactionType": "Loại giao dịch",
+    "account": "Tài khoản",
+    "sourceSubAccount": "Tiểu khoản chuyển",
+    "maxTransferAmount": "Số tiền chuyển tối đa",
+    "destSubAccount": "Tiểu khoản nhận",
+    "transferAmount": "Số tiền chuyển",
+    "note": "Nội dung",
+    "contentTemplate": "Chuyển tiền nội bộ TK {username} từ tiểu khoản {from} sang {to}"
+  },
   "language": {
     "title": "Ngôn ngữ",
     "vi": "Tiếng Việt",

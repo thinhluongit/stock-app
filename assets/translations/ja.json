@@ -126,6 +126,16 @@
   "tradingHandbook": "取引ガイド",
   "address": "住所"
   },
+  "internalTransfer": {
+    "transactionType": "取引種別",
+    "account": "口座",
+    "sourceSubAccount": "振替元サブ口座",
+    "maxTransferAmount": "振替上限金額",
+    "destSubAccount": "振替先サブ口座",
+    "transferAmount": "振替金額",
+    "note": "摘要",
+    "contentTemplate": "口座 {username} のサブ口座 {from} から {to} への口座間振替"
+  },
   "language": {
     "title": "言語",
     "vi": "Tiếng Việt",

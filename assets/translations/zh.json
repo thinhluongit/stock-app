@@ -126,6 +126,16 @@
   "tradingHandbook": "交易手册",
   "address": "地址"
   },
+  "internalTransfer": {
+    "transactionType": "交易类型",
+    "account": "账户",
+    "sourceSubAccount": "转出子账户",
+    "maxTransferAmount": "最大转账金额",
+    "destSubAccount": "转入子账户",
+    "transferAmount": "转账金额",
+    "note": "备注",
+    "contentTemplate": "账户 {username} 从子账户 {from} 内部转账至 {to}"
+  },
   "language": {
     "title": "语言",
     "vi": "Tiếng Việt",

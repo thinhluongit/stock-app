@@ -30,51 +30,59 @@ class InternalTransferPage extends StatelessWidget {
   }
 
   Widget _buildContent(AppUser user) {
-    final contentForm =
-        'Chuyển tiền nội bộ TK ${user.username} từ tiểu khoản 08 sang 01';
+    const sourceSubAccount = '08';
+    const destSubAccount = '01';
+
+    final contentForm = 'internalTransfer.contentTemplate'.tr(
+      namedArgs: {
+        'username': user.username,
+        'from': sourceSubAccount,
+        'to': destSubAccount,
+      },
+    );
 
     return Container(
       padding: EdgeInsets.all(16),
       child: Column(
         children: [
           AppInputField(
-            label: 'Loại giao dịch',
+            label: 'internalTransfer.transactionType'.tr(),
             readOnly: true,
             hintText: 'menu.internalTransfer'.tr(),
             // keyboardType: TextInputType.number,
             // suffixIcon: const Icon(Icons.attach_money),
           ),
           AppInputField(
-            label: 'Tài khoản',
+            label: 'internalTransfer.account'.tr(),
             readOnly: true,
             hintText: user.username,
           ),
           AppInputField(
-            label: 'Tiểu khoản chuyển',
+            label: 'internalTransfer.sourceSubAccount'.tr(),
             readOnly: true,
-            hintText: '08',
+            hintText: sourceSubAccount,
             suffixIcon: const Icon(Icons.keyboard_arrow_down),
           ),
           AppInputField(
-            label: 'Số tiền chuyển tối đa',
+            label: 'internalTransfer.maxTransferAmount'.tr(),
             hintText: 0.toString(),
             suffixIcon: const Icon(Icons.change_circle_outlined),
             keyboardType: TextInputType.number,
           ),
           AppInputField(
-            label: 'Tiểu khoản nhận',
+            label: 'internalTransfer.destSubAccount'.tr(),
             readOnly: true,
-            hintText: '01',
+            hintText: destSubAccount,
             suffixIcon: const Icon(Icons.close),
           ),
           AppInputField(
-            label: 'Số tiền chuyển',
+            label: 'internalTransfer.transferAmount'.tr(),
             hintText: user.username,
             keyboardType: TextInputType.number,
             suffixIcon: const Icon(Icons.close),
           ),
           AppInputField(
-            label: 'Nội dung',
+            label: 'internalTransfer.note'.tr(),
             hintText: contentForm,
             suffixIcon: const Icon(Icons.close),
           ),

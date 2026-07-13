@@ -130,6 +130,16 @@
   "address": "Address"
 
   },
+  "internalTransfer": {
+    "transactionType": "Transaction Type",
+    "account": "Account",
+    "sourceSubAccount": "Source Sub-account",
+    "maxTransferAmount": "Maximum Transfer Amount",
+    "destSubAccount": "Destination Sub-account",
+    "transferAmount": "Transfer Amount",
+    "note": "Note",
+    "contentTemplate": "Internal transfer for account {username} from sub-account {from} to {to}"
+  },
   "language": {
     "title": "Language",
     "vi": "Tiếng Việt",
