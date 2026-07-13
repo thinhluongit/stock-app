@@ -168,7 +168,7 @@ class NotificationItem {
     required this.message,
     required this.createdAt,
     this.status,
-    this.unread = false,
+    this.unread = true,
   });
 
   final NotiType type;

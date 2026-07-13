@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:stock_app/data/models/app_user.dart';
 import 'package:stock_app/features/home/widgets/app_popup.dart';
 import 'package:stock_app/features/login/login_page.dart';
+import 'package:stock_app/providers/noti_provider.dart';
 import 'package:stock_app/providers/user_provider.dart';
 
 import '../../core/localization/language_switcher.dart';
@@ -40,6 +41,7 @@ class _HomePageState extends State<HomePage> {
     ];
 
     final user = context.read<UserProvider>().currentUser;
+    final countNotification = context.watch<NotificationProvider>().unreadCount;
 
     return Scaffold(
       // AppBar chung cho cả 5 tab lớn.
@@ -124,7 +126,7 @@ class _HomePageState extends State<HomePage> {
             icon: Icons.notifications_none,
             activeIcon: Icons.notifications,
             label: 'nav.notifications'.tr(),
-            badgeCount: MockData.unreadCount,
+            badgeCount: countNotification,
           ),
         ],
       ),

@@ -2,6 +2,8 @@ import 'dart:collection';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
+import 'package:notification_center/notification_center.dart';
+import 'package:stock_app/data/core/events.dart';
 import 'package:stock_app/data/mock/mock_data.dart';
 import 'package:stock_app/data/models/models.dart';
 import 'package:uuid/uuid.dart';
@@ -25,6 +27,9 @@ class NotificationProvider extends ChangeNotifier {
     NotiType type = NotiType.transaction,
     NotiStatus? status,
   }) {
+    debugPrint(
+    "Notification count = ${_notifications.length}");
+
     _notifications.insert(
       0,
       NotificationItem(
@@ -37,7 +42,24 @@ class NotificationProvider extends ChangeNotifier {
       ),
     );
 
+    debugPrint(
+    "Notification count after= ${_notifications.length}");
+
     notifyListeners();
+  }
+
+  NotificationProvider() {
+    debugPrint("===== NotificationProvider CREATED =====");
+
+    NotificationCenter().subscribe(
+      AppEvents.orderPlaced,
+      _onOrderPlaced,
+    );
+  }
+
+  void _onOrderPlaced(StockOrder order) {
+    debugPrint("===== RECEIVE orderPlaced =====");
+    addOrderSuccess(order);
   }
 
   /// Đặt lệnh thành công

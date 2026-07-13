@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
+import 'package:notification_center/notification_center.dart';
 import 'package:stock_app/core/utils/formatters.dart';
+import 'package:stock_app/data/core/events.dart';
 import 'package:stock_app/data/mock/mock_data.dart';
 import 'package:stock_app/data/models/models.dart';
 
@@ -115,6 +117,14 @@ class TradingProvider extends ChangeNotifier {
 
     _isPlacing = false;
     notifyListeners();
+
+    NotificationCenter().notify(
+      AppEvents.orderPlaced,
+      data: order,
+    );
+
+    debugPrint("===== NOTIFY orderPlaced =====");
+
     return order;
   }
 

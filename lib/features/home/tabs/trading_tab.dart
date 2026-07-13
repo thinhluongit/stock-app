@@ -249,9 +249,9 @@ class _PlaceOrderState extends State<_PlaceOrder> {
           ),
           TextButton(
             onPressed: () async {
-              final order = await trading.placeOrder();
+              // final order = await trading.placeOrder();
 
-              notiProvider.addOrderSuccess(order);
+              // notiProvider.addOrderSuccess(order);
               Navigator.of(dialogContext).pop(true);
             },
             child: Text('trading.confirm'.tr()),
