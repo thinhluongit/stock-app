@@ -3,6 +3,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stock_app/data/models/app_user.dart';
+import 'package:stock_app/features/home/widgets/app_popup.dart';
+import 'package:stock_app/features/login/login_page.dart';
 import 'package:stock_app/providers/user_provider.dart';
 
 import '../../core/localization/language_switcher.dart';
@@ -27,14 +29,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _index = 0;
 
-  // static const _titleKeys = [
-  //   'nav.market',
-  //   'nav.prices',
-  //   'nav.trading',
-  //   'nav.search',
-  //   'nav.notifications',
-  // ];
-
   @override
   Widget build(BuildContext context) {
     final pages = [
@@ -55,7 +49,10 @@ class _HomePageState extends State<HomePage> {
             ? _buildUserAppbarInfo(user)
             : Text(
                 'appName'.tr(),
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppColors.primary),
+                style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primary),
               ),
         actions: [
           const LanguageSwitcher(),
@@ -67,8 +64,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (_) =>
-                          MenuPage(username: user.username),
+                      builder: (_) => MenuPage(username: user.username),
                     ),
                   ),
                 )
@@ -80,7 +76,37 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: CustomBottomNavBar(
         showTopIndicator: true,
         currentIndex: _index,
-        onTap: (i) => setState(() => _index = i),
+        onTap: (i) {
+          if (i == 2 && user == null) {
+            showDialog(
+              context: context,
+              builder: (_) => AppPopup(
+                title: 'Thông báo',
+                content:
+                    'Quý khách vui lòng đăng nhập để sử dụng chức năng này!',
+                leftButtonText: 'Bỏ qua',
+                rightButtonText: 'Đăng nhập',
+                onLeftPressed: () {
+                  Navigator.pop(context);
+                },
+                onRightPressed: () {
+                  Navigator.of(context).push(PageRouteBuilder(
+                    transitionDuration: const Duration(milliseconds: 500),
+                    pageBuilder: (_, animation, __) => const LoginPage(),
+                    transitionsBuilder: (_, animation, __, child) {
+                      return FadeTransition(
+                        opacity: animation,
+                        child: child,
+                      );
+                    },
+                  ));
+                },
+              ),
+            );
+          } else {
+            setState(() => _index = i);
+          }
+        },
         selectedColor: AppColors.primary,
         items: [
           CustomBottomNavItem(icon: Icons.show_chart, label: 'nav.market'.tr()),
@@ -119,7 +145,10 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(width: 8),
             Container(width: 2, height: 18, color: Colors.grey),
             const SizedBox(width: 8),
-            Text(defaultWallet.id, style: TextStyle(fontSize: 16, color: AppColors.primary), ),
+            Text(
+              defaultWallet.id,
+              style: TextStyle(fontSize: 16, color: AppColors.primary),
+            ),
           ],
         ),
         Align(
