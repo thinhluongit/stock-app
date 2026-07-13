@@ -329,7 +329,7 @@ class MockData {
     ),
   ];
 
-  static const List<NotificationItem> notifications = [
+  static List<NotificationItem> notifications = [
     NotificationItem(
       type: NotiType.transaction,
       title: 'Khớp lệnh thành công',

@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stock_app/providers/noti_provider.dart';
 
 import '../../../core/theme/app_colors.dart';
-import '../../../data/mock/mock_data.dart';
 import '../../../data/models/models.dart';
 import '../widgets/common_widgets.dart';
 import '../widgets/sub_tab_view.dart';
@@ -11,11 +12,13 @@ import '../widgets/sub_tab_view.dart';
 class NotificationsTab extends StatelessWidget {
   const NotificationsTab({super.key});
 
-  List<NotificationItem> _by(NotiType type) =>
-      MockData.notifications.where((n) => n.type == type).toList();
-
   @override
   Widget build(BuildContext context) {
+    final notiProvider = context.watch<NotificationProvider>();
+
+    List<NotificationItem> by(NotiType type) =>
+        notiProvider.notifications.where((n) => n.type == type).toList();
+
     return SubTabView(
       tabs: [
         'common.all'.tr(),
@@ -25,11 +28,11 @@ class NotificationsTab extends StatelessWidget {
         'common.news'.tr(),
       ],
       views: [
-        _NotiList(items: MockData.notifications),
-        _NotiList(items: _by(NotiType.system)),
-        _NotiList(items: _by(NotiType.transaction)),
-        _NotiList(items: _by(NotiType.priceAlert)),
-        _NotiList(items: _by(NotiType.news)),
+        _NotiList(items: notiProvider.notifications),
+        _NotiList(items: by(NotiType.system)),
+        _NotiList(items: by(NotiType.transaction)),
+        _NotiList(items: by(NotiType.priceAlert)),
+        _NotiList(items: by(NotiType.news)),
       ],
     );
   }
@@ -62,7 +65,10 @@ class _NotiTile extends StatelessWidget {
   (IconData, Color) get _icon => switch (item.type) {
         NotiType.system => (Icons.settings, AppColors.textSecondary),
         NotiType.transaction => (Icons.swap_horiz, AppColors.primary),
-        NotiType.priceAlert => (Icons.notifications_active, AppColors.reference),
+        NotiType.priceAlert => (
+            Icons.notifications_active,
+            AppColors.reference
+          ),
         NotiType.news => (Icons.article_outlined, AppColors.floor),
       };
 

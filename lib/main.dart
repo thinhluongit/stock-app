@@ -9,6 +9,7 @@ import 'package:stock_app/features/login/login_page.dart';
 import 'package:stock_app/features/login/splash_page.dart';
 import 'package:stock_app/firebase_options.dart';
 import 'package:stock_app/providers/auth_provider.dart';
+import 'package:stock_app/providers/noti_provider.dart';
 import 'package:stock_app/providers/trading_provider.dart';
 import 'package:stock_app/providers/user_provider.dart';
 import 'package:stock_app/services/notification_service.dart';
@@ -53,6 +54,9 @@ Future<void> main() async {
           ChangeNotifierProvider<UserProvider>(create: (_) => UserProvider()),
           ChangeNotifierProvider<TradingProvider>(
             create: (_) => TradingProvider(),
+          ),
+          ChangeNotifierProvider<NotificationProvider>(
+            create: (_) => NotificationProvider(),
           ),
         ],
         child: const StockApp(),

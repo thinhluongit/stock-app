@@ -126,19 +126,30 @@ class PortfolioItem {
 
 enum NotiType { system, transaction, priceAlert, news }
 
+enum NotiStatus {
+  info,
+  success,
+  warning,
+  error,
+}
+
 /// A notification item.
 class NotificationItem {
-  const NotificationItem({
+  NotificationItem({
+    this.id,
     required this.type,
     required this.title,
     required this.message,
     required this.time,
+    this.status,
     this.unread = false,
   });
 
   final NotiType type;
+  final String? id;
   final String title;
   final String message;
   final String time;
-  final bool unread;
+  final NotiStatus? status;
+  bool unread;
 }

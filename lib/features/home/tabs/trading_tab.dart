@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:stock_app/providers/noti_provider.dart';
 import 'package:stock_app/providers/trading_provider.dart';
 import 'package:stock_app/services/notification_service.dart';
 
@@ -58,6 +59,7 @@ class _PlaceOrderState extends State<_PlaceOrder> {
   @override
   Widget build(BuildContext context) {
     final trading = context.watch<TradingProvider>();
+    final notiProvider = context.watch<NotificationProvider>();
 
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -116,13 +118,14 @@ class _PlaceOrderState extends State<_PlaceOrder> {
         ),
         const SizedBox(height: 20),
         _isNormalOrder
-            ? _buildNormalOrderTab(trading)
+            ? _buildNormalOrderTab(trading, notiProvider)
             : _buildConditionalOrderTab(),
       ],
     );
   }
 
-  Widget _buildNormalOrderTab(TradingProvider trading) {
+  Widget _buildNormalOrderTab(
+      TradingProvider trading, NotificationProvider notiProvider) {
     final priceValue = trading.selectedQuote?.price;
 
     return Container(
@@ -166,7 +169,8 @@ class _PlaceOrderState extends State<_PlaceOrder> {
                 GestureDetector(
                   onTap: trading.isPlacing
                       ? null
-                      : () => _onPlaceOrderPressed(context, trading),
+                      : () =>
+                          _onPlaceOrderPressed(context, trading, notiProvider),
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     width: double.infinity,
@@ -210,6 +214,7 @@ class _PlaceOrderState extends State<_PlaceOrder> {
   Future<void> _onPlaceOrderPressed(
     BuildContext context,
     TradingProvider trading,
+    NotificationProvider notiProvider,
   ) async {
     final validation = trading.validate();
     if (validation != OrderValidation.ok) {
@@ -243,7 +248,12 @@ class _PlaceOrderState extends State<_PlaceOrder> {
             child: Text('trading.cancel'.tr()),
           ),
           TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(true),
+            onPressed: () async {
+              final order = await trading.placeOrder();
+
+              notiProvider.addOrderSuccess(order);
+              Navigator.of(dialogContext).pop(true);
+            },
             child: Text('trading.confirm'.tr()),
           ),
         ],

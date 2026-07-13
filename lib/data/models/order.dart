@@ -1,3 +1,5 @@
+import 'package:stock_app/data/models/models.dart';
+
 enum OrderType {
   limit, // LO
   market, // MP/MTL/MOK...
