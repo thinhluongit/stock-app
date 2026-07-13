@@ -329,41 +329,41 @@ class MockData {
     ),
   ];
 
-  static List<NotificationItem> notifications = [
-    NotificationItem(
-      type: NotiType.transaction,
-      title: 'Khớp lệnh thành công',
-      message: 'Lệnh MUA 1,000 VNM giá 70.2 đã khớp toàn bộ.',
-      time: '5 phút trước',
-      unread: true,
-    ),
-    NotificationItem(
-      type: NotiType.priceAlert,
-      title: 'Cảnh báo giá FPT',
-      message: 'FPT vừa vượt mốc 135.0 (+2.49%).',
-      time: '18 phút trước',
-      unread: true,
-    ),
-    NotificationItem(
-      type: NotiType.system,
-      title: 'Bảo trì hệ thống',
-      message: 'Hệ thống sẽ bảo trì lúc 23:00 hôm nay.',
-      time: '1 giờ trước',
-    ),
-    NotificationItem(
-      type: NotiType.news,
-      title: 'Tin thị trường',
-      message: 'VN-Index tăng phiên thứ 3 liên tiếp, thanh khoản cải thiện.',
-      time: '2 giờ trước',
-      unread: true,
-    ),
-    NotificationItem(
-      type: NotiType.transaction,
-      title: 'Lệnh bị hủy',
-      message: 'Lệnh BÁN 1,500 HPG giá 27.5 đã bị hủy.',
-      time: '3 giờ trước',
-    ),
-  ];
+ static final List<NotificationItem> notifications = [
+  NotificationItem(
+    type: NotiType.transaction,
+    title: 'Khớp lệnh thành công',
+    message: 'Lệnh MUA 1,000 VNM giá 70.2 đã khớp toàn bộ.',
+    createdAt: DateTime.now().subtract(const Duration(minutes: 5)),
+    unread: true,
+  ),
+  NotificationItem(
+    type: NotiType.priceAlert,
+    title: 'Cảnh báo giá FPT',
+    message: 'FPT vừa vượt mốc 135.0 (+2.49%).',
+    createdAt: DateTime.now().subtract(const Duration(minutes: 18)),
+    unread: true,
+  ),
+  NotificationItem(
+    type: NotiType.system,
+    title: 'Bảo trì hệ thống',
+    message: 'Hệ thống sẽ bảo trì lúc 23:00 hôm nay.',
+    createdAt: DateTime.now().subtract(const Duration(hours: 1)),
+  ),
+  NotificationItem(
+    type: NotiType.news,
+    title: 'Tin thị trường',
+    message: 'VN-Index tăng phiên thứ 3 liên tiếp, thanh khoản cải thiện.',
+    createdAt: DateTime.now().subtract(const Duration(hours: 2)),
+    unread: true,
+  ),
+  NotificationItem(
+    type: NotiType.transaction,
+    title: 'Lệnh bị hủy',
+    message: 'Lệnh BÁN 1,500 HPG giá 27.5 đã bị hủy.',
+    createdAt: DateTime.now().subtract(const Duration(hours: 3)),
+  ),
+];
 
   static int get unreadCount => notifications.where((n) => n.unread).length;
 

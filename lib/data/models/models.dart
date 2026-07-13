@@ -140,7 +140,7 @@ class NotificationItem {
     required this.type,
     required this.title,
     required this.message,
-    required this.time,
+    required this.createdAt,
     this.status,
     this.unread = false,
   });
@@ -149,7 +149,7 @@ class NotificationItem {
   final String? id;
   final String title;
   final String message;
-  final String time;
+  final DateTime createdAt;
   final NotiStatus? status;
   bool unread;
 }

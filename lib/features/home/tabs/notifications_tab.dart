@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:stock_app/core/utils/formatters.dart';
 import 'package:stock_app/providers/noti_provider.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -118,7 +119,7 @@ class _NotiTile extends StatelessWidget {
                     style: const TextStyle(
                         color: AppColors.textPrimary, fontSize: 13)),
                 const SizedBox(height: 6),
-                Text(item.time,
+                Text(item.createdAt.toRelativeTime(),
                     style: const TextStyle(
                         color: AppColors.textSecondary, fontSize: 11)),
               ],

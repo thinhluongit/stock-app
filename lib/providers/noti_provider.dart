@@ -31,7 +31,7 @@ class NotificationProvider extends ChangeNotifier {
         id: _uuid.v4(),
         title: title,
         message: content,
-        time: DateTime.now().toIso8601String(),
+        createdAt: DateTime.now(),
         type: type,
         status: status ?? NotiStatus.error,
       ),
