@@ -78,8 +78,16 @@
     "inputStockHint": "Nhập mã chứng khoán",
     "sellableQuantity": "Dư bán",
     "buyingPower": "Dư mua",
-    "buyOrderPlacedSuccess": "Đặt lệnh mua thành công.", "sellOrderPlacedSuccess": "Đặt lệnh bán thành công."
-
+    "buyOrderPlacedSuccess": "Đặt lệnh mua thành công.", "sellOrderPlacedSuccess": "Đặt lệnh bán thành công.",
+    "orderConfirmTitle": "Xác nhận đặt lệnh",
+    "orderConfirmMessage": "{side} {volume} {symbol} tại giá {price}?",
+    "confirm": "Xác nhận",
+    "cancel": "Hủy",
+    "orderSuccessTitle": "Đặt lệnh thành công",
+    "validateNoSymbol": "Vui lòng chọn mã chứng khoán",
+    "validateInvalidPrice": "Vui lòng nhập giá đặt hợp lệ",
+    "validatePriceRange": "Giá đặt phải nằm trong khoảng sàn – trần",
+    "validateInvalidVolume": "Khối lượng phải là bội số của 100"
   },
   "search": {
     "hint": "Nhập mã CK hoặc tên công ty..."

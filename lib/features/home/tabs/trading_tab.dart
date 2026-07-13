@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stock_app/providers/trading_provider.dart';
 import 'package:stock_app/services/notification_service.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -26,7 +28,10 @@ class TradingTab extends StatelessWidget {
       views: [
         // Non-const: these contain .tr() and must re-translate on locale change.
         _PlaceOrder(),
-        _OrderList(orders: MockData.orders),
+        // "Lệnh trong ngày" phản ánh các lệnh vừa đặt qua TradingProvider.
+        Consumer<TradingProvider>(
+          builder: (_, trading, __) => _OrderList(orders: trading.todayOrders),
+        ),
         _OrderList(orders: MockData.orders),
         _Portfolio(),
         PlaceholderView(
@@ -46,14 +51,14 @@ class _PlaceOrder extends StatefulWidget {
 }
 
 class _PlaceOrderState extends State<_PlaceOrder> {
-  bool _isBuySelected = true;
+  // Toggle "Lệnh thường / Lệnh điều kiện" là trạng thái thuần UI nên giữ local;
+  // toàn bộ dữ liệu đặt lệnh (mã, giá, KL, chiều mua/bán) do TradingProvider giữ.
   bool _isNormalOrder = true;
-  double _price = 0.0;
-  double _volume = 0.0;
-  double _excessPrice = 0.0;
 
   @override
   Widget build(BuildContext context) {
+    final trading = context.watch<TradingProvider>();
+
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
@@ -63,26 +68,18 @@ class _PlaceOrderState extends State<_PlaceOrder> {
               child: _SideButton(
                 label: 'common.buy'.tr(),
                 color: AppColors.up,
-                filled: _isBuySelected,
-                isActive: _isBuySelected,
-                onTap: () {
-                  setState(() {
-                    _isBuySelected = true;
-                  });
-                },
+                filled: trading.isBuy,
+                isActive: trading.isBuy,
+                onTap: () => trading.selectSide(OrderSide.buy),
               ),
             ),
             Expanded(
               child: _SideButton(
                 label: 'common.sell'.tr(),
                 color: AppColors.down,
-                filled: !_isBuySelected,
-                isActive: !_isBuySelected,
-                onTap: () {
-                  setState(() {
-                    _isBuySelected = false;
-                  });
-                },
+                filled: !trading.isBuy,
+                isActive: !trading.isBuy,
+                onTap: () => trading.selectSide(OrderSide.sell),
               ),
             ),
           ],
@@ -90,12 +87,7 @@ class _PlaceOrderState extends State<_PlaceOrder> {
         const SizedBox(height: 24),
         _SearchResults(
           quotes: MockData.quotes,
-          onSelected: (quote) {
-            setState(() {
-              _price = quote.price;
-              _excessPrice = quote.price;
-            });
-          },
+          onSelected: trading.selectQuote,
         ),
         const SizedBox(height: 24),
         Row(
@@ -107,11 +99,7 @@ class _PlaceOrderState extends State<_PlaceOrder> {
                 filled: _isNormalOrder,
                 isActive: _isNormalOrder,
                 height: 28,
-                onTap: () {
-                  setState(() {
-                    _isNormalOrder = true;
-                  });
-                },
+                onTap: () => setState(() => _isNormalOrder = true),
               ),
             ),
             Expanded(
@@ -121,25 +109,21 @@ class _PlaceOrderState extends State<_PlaceOrder> {
                 filled: !_isNormalOrder,
                 isActive: !_isNormalOrder,
                 height: 28,
-                onTap: () {
-                  setState(() {
-                    _isNormalOrder = false;
-                  });
-                },
+                onTap: () => setState(() => _isNormalOrder = false),
               ),
             ),
           ],
         ),
         const SizedBox(height: 20),
         _isNormalOrder
-            ? _buildNormalOrderTab(_excessPrice)
+            ? _buildNormalOrderTab(trading)
             : _buildConditionalOrderTab(),
       ],
     );
   }
 
-  Widget _buildNormalOrderTab(double price) {
-    final priceValue = price != 0.0 ? price : null;
+  Widget _buildNormalOrderTab(TradingProvider trading) {
+    final priceValue = trading.selectedQuote?.price;
 
     return Container(
       width: double.infinity,
@@ -168,91 +152,49 @@ class _PlaceOrderState extends State<_PlaceOrder> {
               children: [
                 ValueStepper(
                   label: 'common.price'.tr(),
-                  value: _price,
-                  onIncrease: () {
-                    setState(() {
-                      _price = (_price + 0.1).roundTo1Decimal();
-                    });
-                  },
-                  onDecrease: () {
-                    setState(() {
-                      _price = (_price - 0.1)
-                          .roundTo1Decimal()
-                          .clamp(0.0, double.infinity)
-                          .toDouble();
-                    });
-                  },
+                  value: trading.price,
+                  onIncrease: trading.increasePrice,
+                  onDecrease: trading.decreasePrice,
                 ),
                 const SizedBox(height: 8),
                 ValueStepper(
-                    label: 'common.volume'.tr(),
-                    value: _volume,
-                    onIncrease: () {
-                      setState(() {
-                        _volume += 100;
-                      });
-                    },
-                    onDecrease: () {
-                      setState(() {
-                        _volume = (_volume - 100)
-                            .clamp(0.0, double.infinity)
-                            .toDouble();
-                      });
-                    }),
+                  label: 'common.volume'.tr(),
+                  value: trading.volume.toDouble(),
+                  onIncrease: trading.increaseVolume,
+                  onDecrease: trading.decreaseVolume,
+                ),
                 GestureDetector(
-                  onTap: () async {
-                    showDialog(
-                      context: context,
-                      builder: (_) => AlertDialog(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        content: SizedBox(
-                          width: 300,
-                          height: 120,
-                          child: const Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.check_circle,
-                                color: Colors.green,
-                                size: 36,
-                              ),
-                              SizedBox(height: 12),
-                              Text(
-                                'Đặt lệnh thành công',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                    await NotificationService.instance.show(
-                      title: 'Stock App',
-                      body: _isBuySelected
-                          ? 'trading.buyOrderPlacedSuccess'.tr()
-                          : 'trading.sellOrderPlacedSuccess'.tr(),
-                    );
-                  },
+                  onTap: trading.isPlacing
+                      ? null
+                      : () => _onPlaceOrderPressed(context, trading),
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     width: double.infinity,
                     margin: const EdgeInsets.only(top: 12),
                     decoration: BoxDecoration(
-                      color: _isBuySelected ? AppColors.up : AppColors.down,
+                      color: trading.isBuy ? AppColors.up : AppColors.down,
                       borderRadius: BorderRadius.circular(6),
                     ),
-                    child: Text(
-                      _isBuySelected ? 'common.buy'.tr() : 'common.sell'.tr(),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      textAlign: TextAlign.center,
+                    child: Center(
+                      child: trading.isPlacing
+                          ? const SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: Colors.white,
+                              ),
+                            )
+                          : Text(
+                              trading.isBuy
+                                  ? 'common.buy'.tr()
+                                  : 'common.sell'.tr(),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                     ),
                   ),
                 ),
@@ -262,6 +204,110 @@ class _PlaceOrderState extends State<_PlaceOrder> {
         ],
       ),
     );
+  }
+
+  /// Kiểm tra hợp lệ -> xác nhận -> gửi lệnh -> báo thành công + notification.
+  Future<void> _onPlaceOrderPressed(
+    BuildContext context,
+    TradingProvider trading,
+  ) async {
+    final validation = trading.validate();
+    if (validation != OrderValidation.ok) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(_validationMessage(validation))),
+      );
+      return;
+    }
+
+    final isBuy = trading.isBuy;
+    final sideLabel = (isBuy ? 'common.buy' : 'common.sell').tr();
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        title: Text('trading.orderConfirmTitle'.tr()),
+        content: Text(
+          'trading.orderConfirmMessage'.tr(namedArgs: {
+            'side': sideLabel,
+            'volume': formatVolume(trading.volume),
+            'symbol': trading.selectedQuote!.symbol,
+            'price': '${trading.price}',
+          }),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: Text('trading.cancel'.tr()),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: Text('trading.confirm'.tr()),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true) return;
+
+    await trading.placeOrder();
+
+    if (!context.mounted) return;
+
+    await showDialog<void>(
+      context: context,
+      builder: (_) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        content: SizedBox(
+          width: 300,
+          height: 120,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.check_circle,
+                color: Colors.green,
+                size: 36,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'trading.orderSuccessTitle'.tr(),
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    await NotificationService.instance.show(
+      title: 'Stock App',
+      body: isBuy
+          ? 'trading.buyOrderPlacedSuccess'.tr()
+          : 'trading.sellOrderPlacedSuccess'.tr(),
+    );
+  }
+
+  String _validationMessage(OrderValidation validation) {
+    switch (validation) {
+      case OrderValidation.noSymbol:
+        return 'trading.validateNoSymbol'.tr();
+      case OrderValidation.invalidPrice:
+        return 'trading.validateInvalidPrice'.tr();
+      case OrderValidation.priceOutOfRange:
+        return 'trading.validatePriceRange'.tr();
+      case OrderValidation.invalidVolume:
+        return 'trading.validateInvalidVolume'.tr();
+      case OrderValidation.ok:
+        return '';
+    }
   }
 
   Widget _buildExcessTitle(String title) {

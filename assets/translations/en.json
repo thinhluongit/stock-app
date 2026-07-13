@@ -81,7 +81,16 @@
     "inputStockHint": "Enter Stock Code",
     "sellableQuantity": "Sellable Quantity",
     "buyingPower": "Buying Power",
-    "buyOrderPlacedSuccess": "Buy order placed successfully.", "sellOrderPlacedSuccess": "Sell order placed successfully."
+    "buyOrderPlacedSuccess": "Buy order placed successfully.", "sellOrderPlacedSuccess": "Sell order placed successfully.",
+    "orderConfirmTitle": "Confirm order",
+    "orderConfirmMessage": "{side} {volume} {symbol} at price {price}?",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "orderSuccessTitle": "Order placed successfully",
+    "validateNoSymbol": "Please select a stock symbol",
+    "validateInvalidPrice": "Please enter a valid order price",
+    "validatePriceRange": "Order price must be within the floor–ceiling range",
+    "validateInvalidVolume": "Volume must be a multiple of 100"
   },
   "search": {
     "hint": "Enter symbol or company name..."

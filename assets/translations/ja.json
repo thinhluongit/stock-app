@@ -78,7 +78,18 @@
     "tradeHistory": "取引履歴",
     "inputStockHint": "銘柄コードを入力",
     "sellableQuantity": "売却可能数量",
-    "buyingPower": "買付余力"
+    "buyingPower": "買付余力",
+    "buyOrderPlacedSuccess": "買い注文が正常に送信されました。",
+    "sellOrderPlacedSuccess": "売り注文が正常に送信されました。",
+    "orderConfirmTitle": "注文確認",
+    "orderConfirmMessage": "{side} {volume} {symbol} を価格 {price} で？",
+    "confirm": "確認",
+    "cancel": "キャンセル",
+    "orderSuccessTitle": "注文が完了しました",
+    "validateNoSymbol": "銘柄コードを選択してください",
+    "validateInvalidPrice": "有効な注文価格を入力してください",
+    "validatePriceRange": "注文価格はストップ安〜ストップ高の範囲内で入力してください",
+    "validateInvalidVolume": "数量は100の倍数で入力してください"
   },
   "search": {
     "hint": "銘柄または会社名を入力..."

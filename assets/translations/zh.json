@@ -78,7 +78,18 @@
     "tradeHistory": "交易历史",
     "inputStockHint": "输入股票代码",
     "sellableQuantity": "可卖数量",
-    "buyingPower": "可买数量"
+    "buyingPower": "可买数量",
+    "buyOrderPlacedSuccess": "买入委托提交成功。",
+    "sellOrderPlacedSuccess": "卖出委托提交成功。",
+    "orderConfirmTitle": "确认下单",
+    "orderConfirmMessage": "{side} {volume} {symbol}，价格 {price}？",
+    "confirm": "确认",
+    "cancel": "取消",
+    "orderSuccessTitle": "下单成功",
+    "validateNoSymbol": "请选择股票代码",
+    "validateInvalidPrice": "请输入有效的委托价",
+    "validatePriceRange": "委托价必须在跌停价与涨停价之间",
+    "validateInvalidVolume": "数量必须为100的倍数"
   },
   "search": {
     "hint": "输入代码或公司名称..."
