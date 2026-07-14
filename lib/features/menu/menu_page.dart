@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stock_app/data/mock/mock_data.dart';
 import 'package:stock_app/providers/auth_provider.dart';
+import 'package:stock_app/providers/user_provider.dart';
 
 import '../../core/localization/language_switcher.dart';
 import '../../core/theme/app_colors.dart';
@@ -107,6 +108,7 @@ class MenuPage extends StatelessWidget {
 
   Future<void> _confirmLogout(BuildContext context) async {
     final authProvider = context.read<AuthProvider>();
+    final userProvider = context.read<UserProvider>();
 
     final confirmed = await showDialog<bool>(
       context: context,
@@ -121,6 +123,7 @@ class MenuPage extends StatelessWidget {
           TextButton(
             onPressed: () async {
               authProvider.logout();
+              userProvider.clear();
               Navigator.pop(dialogCtx, true);
             },
             child: Text('menu.logout'.tr(),
